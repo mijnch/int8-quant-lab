@@ -1,0 +1,6 @@
+# 데이터(Speech Commands 특징값)는 스크립트로 다시 만든다
+data/
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
