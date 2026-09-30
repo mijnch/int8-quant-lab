@@ -1,0 +1,24 @@
+이 저장소의 코드는 MIT 라이선스(LICENSE)다. 다음 파일과 참고 원문은 각자의 라이선스를 따른다.
+
+1. MLPerf Tiny 레퍼런스 자료 — Apache License 2.0
+   출처: https://github.com/mlcommons/tiny (커밋 4addd0fa08d216e20637637874e084895f289da4)
+   경로: benchmark/training/keyword_spotting/
+   - models/kws_ref_model.tflite           trained_models/kws_ref_model.tflite 그대로
+                                            (md5 618aeb155673dae92fa6a7f26608add5, 원 저장소의 .md5와 일치)
+   - models/kws_ref_model_float32.tflite   trained_models/kws_ref_model_float32.tflite 그대로
+   - models/quant_cal_idxs.txt             quant_cal_idxs.txt 그대로
+   - models/kws_tf221_*.tflite             trained_models/kws_ref_model(SavedModel)을 이 저장소의
+                                            scripts/verify_t1.py·evaluate.py로 변환한 파생물
+
+2. Speech Commands v2 (Warden, 2018, arXiv:1804.03209) — Creative Commons Attribution 4.0
+   데이터 자체는 저장소에 넣지 않는다. models/quant_cal_idxs.txt와 결과 수치는 이 데이터에서 나왔다.
+
+3. 알고리즘 참고 원문 — Apache License 2.0
+   src/qlab/의 numpy 구현은 다음 원문의 산술을 읽고 다시 작성한 것이다(코드 복사 아님, 상수 값 제외).
+   - LiteRT v2.2.0 (github.com/google-ai-edge/LiteRT) tflite/kernels/…
+   - TensorFlow v2.21.0 (github.com/tensorflow/tensorflow) compiler/mlir/lite/quantization/…,
+     compiler/mlir/tools/optimize/quantization_utils.cc
+   - gemmlowp fixedpoint/fixedpoint.h (github.com/google/gemmlowp)
+   - ruy 3286a34 kernel_avx512.cc (github.com/google/ruy)
+   - XNNPACK 25b42df src/operators/convolution-nhwc.c, src/qs8-qc8w-gemm/… (github.com/google/XNNPACK)
+   - ARM_NEON_2_x86_SSE a15b489 NEON_2_SSE.h (github.com/intel/ARM_NEON_2_x86_SSE, BSD-2-Clause)

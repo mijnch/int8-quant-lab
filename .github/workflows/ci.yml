@@ -1,0 +1,34 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  bitexact:
+    # numpy 정수 커널이 LiteRT 세 실행 경로(참조·최적화·XNNPACK)와 비트 단위로 같은지,
+    # 저장소에 넣어 둔 변환 결과를 명세 규칙으로 재현하는지 확인한다(TensorFlow·데이터 불필요).
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    env:
+      PYTHONUTF8: '1'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: 의존성 설치
+        run: python -m pip install -r requirements.txt
+
+      - name: 실행 환경 기록(커널 선택은 CPU 명령어 집합에 따라 달라질 수 있다)
+        run: python -c "import platform, numpy, importlib.metadata as m; print(platform.platform(), platform.machine(), platform.processor()); print('numpy', numpy.__version__, 'ai-edge-litert', m.version('ai-edge-litert'))"
+
+      - name: 테스트
+        run: python -m pytest -q
