@@ -1,0 +1,776 @@
+{
+  "activations": [
+    {
+      "tensor": "serving_default_input_1:0",
+      "op": "INPUT",
+      "rule": "보정 min/max",
+      "calib_min": -123.5696792602539,
+      "calib_max": 25.529495239257812,
+      "scale_converter": 0.5847026705741882,
+      "scale_mine": 0.5847026705741882,
+      "zp_converter": 83,
+      "zp_mine": 83,
+      "equal": true
+    },
+    {
+      "tensor": "functional_1/activation/Relu;functional_1/batch_normalizatio",
+      "op": "CONV_2D",
+      "rule": "보정 min/max",
+      "calib_min": 0.0,
+      "calib_max": 22.371036529541016,
+      "scale_converter": 0.0877295583486557,
+      "scale_mine": 0.0877295583486557,
+      "zp_converter": -128,
+      "zp_mine": -128,
+      "equal": true
+    },
+    {
+      "tensor": "functional_1/activation_1/Relu;functional_1/batch_normalizat",
+      "op": "DEPTHWISE_CONV_2D",
+      "rule": "보정 min/max",
+      "calib_min": 0.0,
+      "calib_max": 23.214290618896484,
+      "scale_converter": 0.09103643149137497,
+      "scale_mine": 0.09103643149137497,
+      "zp_converter": -128,
+      "zp_mine": -128,
+      "equal": true
+    },
+    {
+      "tensor": "functional_1/activation_2/Relu;functional_1/batch_normalizat",
+      "op": "CONV_2D",
+      "rule": "보정 min/max",
+      "calib_min": 0.0,
+      "calib_max": 16.216814041137695,
+      "scale_converter": 0.06359534710645676,
+      "scale_mine": 0.06359534710645676,
+      "zp_converter": -128,
+      "zp_mine": -128,
+      "equal": true
+    },
+    {
+      "tensor": "functional_1/activation_3/Relu;functional_1/batch_normalizat",
+      "op": "DEPTHWISE_CONV_2D",
+      "rule": "보정 min/max",
+      "calib_min": 0.0,
+      "calib_max": 16.731412887573242,
+      "scale_converter": 0.06561338156461716,
+      "scale_mine": 0.06561338156461716,
+      "zp_converter": -128,
+      "zp_mine": -128,
+      "equal": true
+    },
+    {
+      "tensor": "functional_1/activation_4/Relu;functional_1/batch_normalizat",
+      "op": "CONV_2D",
+      "rule": "보정 min/max",
+      "calib_min": 0.0,
+      "calib_max": 13.443087577819824,
+      "scale_converter": 0.052717991173267365,
+      "scale_mine": 0.052717991173267365,
+      "zp_converter": -128,
+      "zp_mine": -128,
+      "equal": true
+    },
+    {
+      "tensor": "functional_1/activation_5/Relu;functional_1/batch_normalizat",
+      "op": "DEPTHWISE_CONV_2D",
+      "rule": "보정 min/max",
+      "calib_min": 0.0,
+      "calib_max": 13.232498168945312,
+      "scale_converter": 0.051892150193452835,
+      "scale_mine": 0.051892150193452835,
+      "zp_converter": -128,
+      "zp_mine": -128,
+      "equal": true
+    },
+    {
+      "tensor": "functional_1/activation_6/Relu;functional_1/batch_normalizat",
+      "op": "CONV_2D",
+      "rule": "보정 min/max",
+      "calib_min": 0.0,
+      "calib_max": 8.088778495788574,
+      "scale_converter": 0.03172070160508156,
+      "scale_mine": 0.03172070160508156,
+      "zp_converter": -128,
+      "zp_mine": -128,
+      "equal": true
+    },
+    {
+      "tensor": "functional_1/activation_7/Relu;functional_1/batch_normalizat",
+      "op": "DEPTHWISE_CONV_2D",
+      "rule": "보정 min/max",
+      "calib_min": 0.0,
+      "calib_max": 10.828874588012695,
+      "scale_converter": 0.0424661748111248,
+      "scale_mine": 0.0424661748111248,
+      "zp_converter": -128,
+      "zp_mine": -128,
+      "equal": true
+    },
+    {
+      "tensor": "functional_1/activation_8/Relu;functional_1/batch_normalizat",
+      "op": "CONV_2D",
+      "rule": "보정 min/max",
+      "calib_min": 0.0,
+      "calib_max": 19.396190643310547,
+      "scale_converter": 0.07606349140405655,
+      "scale_mine": 0.07606349140405655,
+      "zp_converter": -128,
+      "zp_mine": -128,
+      "equal": true
+    },
+    {
+      "tensor": "functional_1/average_pooling2d/AvgPool",
+      "op": "AVERAGE_POOL_2D",
+      "rule": "입력과 같게",
+      "calib_min": 0.0,
+      "calib_max": 3.5645358562469482,
+      "scale_converter": 0.07606349140405655,
+      "scale_mine": 0.07606349140405655,
+      "zp_converter": -128,
+      "zp_mine": -128,
+      "equal": true
+    },
+    {
+      "tensor": "functional_1/flatten/Reshape",
+      "op": "RESHAPE",
+      "rule": "입력과 같게",
+      "calib_min": 0.0,
+      "calib_max": 3.5645358562469482,
+      "scale_converter": 0.07606349140405655,
+      "scale_mine": 0.07606349140405655,
+      "zp_converter": -128,
+      "zp_mine": -128,
+      "equal": true
+    },
+    {
+      "tensor": "functional_1/dense/MatMul;functional_1/dense/BiasAdd",
+      "op": "FULLY_CONNECTED",
+      "rule": "보정 min/max",
+      "calib_min": -22.719465255737305,
+      "calib_max": 13.820192337036133,
+      "scale_converter": 0.14329276978969574,
+      "scale_mine": 0.14329276978969574,
+      "zp_converter": 31,
+      "zp_mine": 31,
+      "equal": true
+    },
+    {
+      "tensor": "StatefulPartitionedCall:0",
+      "op": "SOFTMAX",
+      "rule": "softmax 고정값",
+      "calib_min": 7.319756339409494e-15,
+      "calib_max": 0.9999997615814209,
+      "scale_converter": 0.00390625,
+      "scale_mine": 0.00390625,
+      "zp_converter": -128,
+      "zp_mine": -128,
+      "equal": true
+    }
+  ],
+  "weights": [
+    {
+      "op": "0:CONV_2D",
+      "shape": [
+        64,
+        10,
+        4,
+        1
+      ],
+      "per_channel": true,
+      "axis": 0,
+      "scales_equal": true,
+      "zero_points_all_zero": true,
+      "int8_mismatch": 0,
+      "int8_max_diff": 0,
+      "int8_mismatch_divide_rule": 0,
+      "n": 2560
+    },
+    {
+      "op": "1:DEPTHWISE_CONV_2D",
+      "shape": [
+        1,
+        3,
+        3,
+        64
+      ],
+      "per_channel": true,
+      "axis": 3,
+      "scales_equal": true,
+      "zero_points_all_zero": true,
+      "int8_mismatch": 0,
+      "int8_max_diff": 0,
+      "int8_mismatch_divide_rule": 0,
+      "n": 576
+    },
+    {
+      "op": "2:CONV_2D",
+      "shape": [
+        64,
+        1,
+        1,
+        64
+      ],
+      "per_channel": true,
+      "axis": 0,
+      "scales_equal": true,
+      "zero_points_all_zero": true,
+      "int8_mismatch": 0,
+      "int8_max_diff": 0,
+      "int8_mismatch_divide_rule": 0,
+      "n": 4096
+    },
+    {
+      "op": "3:DEPTHWISE_CONV_2D",
+      "shape": [
+        1,
+        3,
+        3,
+        64
+      ],
+      "per_channel": true,
+      "axis": 3,
+      "scales_equal": true,
+      "zero_points_all_zero": true,
+      "int8_mismatch": 0,
+      "int8_max_diff": 0,
+      "int8_mismatch_divide_rule": 0,
+      "n": 576
+    },
+    {
+      "op": "4:CONV_2D",
+      "shape": [
+        64,
+        1,
+        1,
+        64
+      ],
+      "per_channel": true,
+      "axis": 0,
+      "scales_equal": true,
+      "zero_points_all_zero": true,
+      "int8_mismatch": 0,
+      "int8_max_diff": 0,
+      "int8_mismatch_divide_rule": 0,
+      "n": 4096
+    },
+    {
+      "op": "5:DEPTHWISE_CONV_2D",
+      "shape": [
+        1,
+        3,
+        3,
+        64
+      ],
+      "per_channel": true,
+      "axis": 3,
+      "scales_equal": true,
+      "zero_points_all_zero": true,
+      "int8_mismatch": 0,
+      "int8_max_diff": 0,
+      "int8_mismatch_divide_rule": 0,
+      "n": 576
+    },
+    {
+      "op": "6:CONV_2D",
+      "shape": [
+        64,
+        1,
+        1,
+        64
+      ],
+      "per_channel": true,
+      "axis": 0,
+      "scales_equal": true,
+      "zero_points_all_zero": true,
+      "int8_mismatch": 0,
+      "int8_max_diff": 0,
+      "int8_mismatch_divide_rule": 0,
+      "n": 4096
+    },
+    {
+      "op": "7:DEPTHWISE_CONV_2D",
+      "shape": [
+        1,
+        3,
+        3,
+        64
+      ],
+      "per_channel": true,
+      "axis": 3,
+      "scales_equal": true,
+      "zero_points_all_zero": true,
+      "int8_mismatch": 0,
+      "int8_max_diff": 0,
+      "int8_mismatch_divide_rule": 0,
+      "n": 576
+    },
+    {
+      "op": "8:CONV_2D",
+      "shape": [
+        64,
+        1,
+        1,
+        64
+      ],
+      "per_channel": true,
+      "axis": 0,
+      "scales_equal": true,
+      "zero_points_all_zero": true,
+      "int8_mismatch": 0,
+      "int8_max_diff": 0,
+      "int8_mismatch_divide_rule": 0,
+      "n": 4096
+    },
+    {
+      "op": "11:FULLY_CONNECTED",
+      "shape": [
+        12,
+        64
+      ],
+      "per_channel": true,
+      "axis": 0,
+      "scales_equal": true,
+      "zero_points_all_zero": true,
+      "int8_mismatch": 0,
+      "int8_max_diff": 0,
+      "int8_mismatch_divide_rule": 0,
+      "n": 768
+    }
+  ],
+  "bias": [
+    {
+      "op": "0:CONV_2D",
+      "n": 64,
+      "scales_equal": true,
+      "int32_mismatch": 0,
+      "int32_max_diff": 0,
+      "int32_mismatch_divide_rule": 0
+    },
+    {
+      "op": "1:DEPTHWISE_CONV_2D",
+      "n": 64,
+      "scales_equal": true,
+      "int32_mismatch": 0,
+      "int32_max_diff": 0,
+      "int32_mismatch_divide_rule": 0
+    },
+    {
+      "op": "2:CONV_2D",
+      "n": 64,
+      "scales_equal": true,
+      "int32_mismatch": 0,
+      "int32_max_diff": 0,
+      "int32_mismatch_divide_rule": 0
+    },
+    {
+      "op": "3:DEPTHWISE_CONV_2D",
+      "n": 64,
+      "scales_equal": true,
+      "int32_mismatch": 0,
+      "int32_max_diff": 0,
+      "int32_mismatch_divide_rule": 0
+    },
+    {
+      "op": "4:CONV_2D",
+      "n": 64,
+      "scales_equal": true,
+      "int32_mismatch": 0,
+      "int32_max_diff": 0,
+      "int32_mismatch_divide_rule": 0
+    },
+    {
+      "op": "5:DEPTHWISE_CONV_2D",
+      "n": 64,
+      "scales_equal": true,
+      "int32_mismatch": 0,
+      "int32_max_diff": 0,
+      "int32_mismatch_divide_rule": 0
+    },
+    {
+      "op": "6:CONV_2D",
+      "n": 64,
+      "scales_equal": true,
+      "int32_mismatch": 0,
+      "int32_max_diff": 0,
+      "int32_mismatch_divide_rule": 0
+    },
+    {
+      "op": "7:DEPTHWISE_CONV_2D",
+      "n": 64,
+      "scales_equal": true,
+      "int32_mismatch": 0,
+      "int32_max_diff": 0,
+      "int32_mismatch_divide_rule": 1
+    },
+    {
+      "op": "8:CONV_2D",
+      "n": 64,
+      "scales_equal": true,
+      "int32_mismatch": 0,
+      "int32_max_diff": 0,
+      "int32_mismatch_divide_rule": 0
+    },
+    {
+      "op": "11:FULLY_CONNECTED",
+      "n": 12,
+      "scales_equal": true,
+      "int32_mismatch": 0,
+      "int32_max_diff": 0,
+      "int32_mismatch_divide_rule": 0
+    }
+  ],
+  "summary": {
+    "activation_qparams_equal": "14/14",
+    "weight_scales_equal": "10/10",
+    "weight_int8_mismatch": 0,
+    "weight_count": 22016,
+    "bias_scales_equal": "10/10",
+    "bias_int32_mismatch": 0,
+    "weight_int8_mismatch_divide_rule": 0,
+    "bias_int32_mismatch_divide_rule": 1,
+    "bias_count": 588,
+    "stats_equal_tf_runtime": "14/14",
+    "stats_equal_litert_runtime": "12/14"
+  },
+  "stats_recomputed": {
+    "tf": [
+      {
+        "tensor": "serving_default_input_1:0",
+        "min_logged": -123.5696792602539,
+        "min_mine": -123.5696792602539,
+        "max_logged": 25.529495239257812,
+        "max_mine": 25.529495239257812,
+        "equal": true
+      },
+      {
+        "tensor": "functional_1/activation/Relu;functional_1/batch_normalizatio",
+        "min_logged": 0.0,
+        "min_mine": 0.0,
+        "max_logged": 22.371036529541016,
+        "max_mine": 22.371036529541016,
+        "equal": true
+      },
+      {
+        "tensor": "functional_1/activation_1/Relu;functional_1/batch_normalizat",
+        "min_logged": 0.0,
+        "min_mine": 0.0,
+        "max_logged": 23.214290618896484,
+        "max_mine": 23.214290618896484,
+        "equal": true
+      },
+      {
+        "tensor": "functional_1/activation_2/Relu;functional_1/batch_normalizat",
+        "min_logged": 0.0,
+        "min_mine": 0.0,
+        "max_logged": 16.216814041137695,
+        "max_mine": 16.216814041137695,
+        "equal": true
+      },
+      {
+        "tensor": "functional_1/activation_3/Relu;functional_1/batch_normalizat",
+        "min_logged": 0.0,
+        "min_mine": 0.0,
+        "max_logged": 16.731412887573242,
+        "max_mine": 16.731412887573242,
+        "equal": true
+      },
+      {
+        "tensor": "functional_1/activation_4/Relu;functional_1/batch_normalizat",
+        "min_logged": 0.0,
+        "min_mine": 0.0,
+        "max_logged": 13.443087577819824,
+        "max_mine": 13.443087577819824,
+        "equal": true
+      },
+      {
+        "tensor": "functional_1/activation_5/Relu;functional_1/batch_normalizat",
+        "min_logged": 0.0,
+        "min_mine": 0.0,
+        "max_logged": 13.232498168945312,
+        "max_mine": 13.232498168945312,
+        "equal": true
+      },
+      {
+        "tensor": "functional_1/activation_6/Relu;functional_1/batch_normalizat",
+        "min_logged": 0.0,
+        "min_mine": 0.0,
+        "max_logged": 8.088778495788574,
+        "max_mine": 8.088778495788574,
+        "equal": true
+      },
+      {
+        "tensor": "functional_1/activation_7/Relu;functional_1/batch_normalizat",
+        "min_logged": 0.0,
+        "min_mine": 0.0,
+        "max_logged": 10.828874588012695,
+        "max_mine": 10.828874588012695,
+        "equal": true
+      },
+      {
+        "tensor": "functional_1/activation_8/Relu;functional_1/batch_normalizat",
+        "min_logged": 0.0,
+        "min_mine": 0.0,
+        "max_logged": 19.396190643310547,
+        "max_mine": 19.396190643310547,
+        "equal": true
+      },
+      {
+        "tensor": "functional_1/average_pooling2d/AvgPool",
+        "min_logged": 0.0,
+        "min_mine": 0.0,
+        "max_logged": 3.5645358562469482,
+        "max_mine": 3.5645358562469482,
+        "equal": true
+      },
+      {
+        "tensor": "functional_1/flatten/Reshape",
+        "min_logged": 0.0,
+        "min_mine": 0.0,
+        "max_logged": 3.5645358562469482,
+        "max_mine": 3.5645358562469482,
+        "equal": true
+      },
+      {
+        "tensor": "functional_1/dense/MatMul;functional_1/dense/BiasAdd",
+        "min_logged": -22.719465255737305,
+        "min_mine": -22.719465255737305,
+        "max_logged": 13.820192337036133,
+        "max_mine": 13.820192337036133,
+        "equal": true
+      },
+      {
+        "tensor": "StatefulPartitionedCall:0",
+        "min_logged": 7.319756339409494e-15,
+        "min_mine": 7.319756339409494e-15,
+        "max_logged": 0.9999997615814209,
+        "max_mine": 0.9999997615814209,
+        "equal": true
+      }
+    ],
+    "litert": [
+      {
+        "tensor": "serving_default_input_1:0",
+        "min_logged": -123.5696792602539,
+        "min_mine": -123.5696792602539,
+        "max_logged": 25.529495239257812,
+        "max_mine": 25.529495239257812,
+        "equal": true
+      },
+      {
+        "tensor": "functional_1/activation/Relu;functional_1/batch_normalizatio",
+        "min_logged": 0.0,
+        "min_mine": 0.0,
+        "max_logged": 22.371036529541016,
+        "max_mine": 22.371036529541016,
+        "equal": true
+      },
+      {
+        "tensor": "functional_1/activation_1/Relu;functional_1/batch_normalizat",
+        "min_logged": 0.0,
+        "min_mine": 0.0,
+        "max_logged": 23.214290618896484,
+        "max_mine": 23.214290618896484,
+        "equal": true
+      },
+      {
+        "tensor": "functional_1/activation_2/Relu;functional_1/batch_normalizat",
+        "min_logged": 0.0,
+        "min_mine": 0.0,
+        "max_logged": 16.216814041137695,
+        "max_mine": 16.216814041137695,
+        "equal": true
+      },
+      {
+        "tensor": "functional_1/activation_3/Relu;functional_1/batch_normalizat",
+        "min_logged": 0.0,
+        "min_mine": 0.0,
+        "max_logged": 16.731412887573242,
+        "max_mine": 16.731412887573242,
+        "equal": true
+      },
+      {
+        "tensor": "functional_1/activation_4/Relu;functional_1/batch_normalizat",
+        "min_logged": 0.0,
+        "min_mine": 0.0,
+        "max_logged": 13.443087577819824,
+        "max_mine": 13.443087577819824,
+        "equal": true
+      },
+      {
+        "tensor": "functional_1/activation_5/Relu;functional_1/batch_normalizat",
+        "min_logged": 0.0,
+        "min_mine": 0.0,
+        "max_logged": 13.232498168945312,
+        "max_mine": 13.232498168945312,
+        "equal": true
+      },
+      {
+        "tensor": "functional_1/activation_6/Relu;functional_1/batch_normalizat",
+        "min_logged": 0.0,
+        "min_mine": 0.0,
+        "max_logged": 8.088778495788574,
+        "max_mine": 8.088778495788574,
+        "equal": true
+      },
+      {
+        "tensor": "functional_1/activation_7/Relu;functional_1/batch_normalizat",
+        "min_logged": 0.0,
+        "min_mine": 0.0,
+        "max_logged": 10.828874588012695,
+        "max_mine": 10.828874588012695,
+        "equal": true
+      },
+      {
+        "tensor": "functional_1/activation_8/Relu;functional_1/batch_normalizat",
+        "min_logged": 0.0,
+        "min_mine": 0.0,
+        "max_logged": 19.396190643310547,
+        "max_mine": 19.396190643310547,
+        "equal": true
+      },
+      {
+        "tensor": "functional_1/average_pooling2d/AvgPool",
+        "min_logged": 0.0,
+        "min_mine": 0.0,
+        "max_logged": 3.5645358562469482,
+        "max_mine": 3.5645358562469482,
+        "equal": true
+      },
+      {
+        "tensor": "functional_1/flatten/Reshape",
+        "min_logged": 0.0,
+        "min_mine": 0.0,
+        "max_logged": 3.5645358562469482,
+        "max_mine": 3.5645358562469482,
+        "equal": true
+      },
+      {
+        "tensor": "functional_1/dense/MatMul;functional_1/dense/BiasAdd",
+        "min_logged": -22.719465255737305,
+        "min_mine": -22.719463348388672,
+        "max_logged": 13.820192337036133,
+        "max_mine": 13.820191383361816,
+        "equal": false
+      },
+      {
+        "tensor": "StatefulPartitionedCall:0",
+        "min_logged": 7.319756339409494e-15,
+        "min_mine": 7.319757186442441e-15,
+        "max_logged": 0.9999997615814209,
+        "max_mine": 0.9999997615814209,
+        "equal": false
+      }
+    ]
+  },
+  "vs_mlperf_int8": [
+    {
+      "op": "0:CONV_2D",
+      "out_scale_equal": false,
+      "out_zp_equal": true,
+      "weight_scales": "64 vs 64",
+      "weight_int8_mismatch": 2546,
+      "weight_scale_max_rel_diff": 2.841449499130249,
+      "weight_corr_savedmodel_vs_mlperf_int8": 0.06815121539842044
+    },
+    {
+      "op": "1:DEPTHWISE_CONV_2D",
+      "out_scale_equal": false,
+      "out_zp_equal": true,
+      "weight_scales": "64 vs 64",
+      "weight_int8_mismatch": 567,
+      "weight_scale_max_rel_diff": 1.6999436616897583,
+      "weight_corr_savedmodel_vs_mlperf_int8": 0.05001842877026336
+    },
+    {
+      "op": "2:CONV_2D",
+      "out_scale_equal": false,
+      "out_zp_equal": true,
+      "weight_scales": "64 vs 64",
+      "weight_int8_mismatch": 4074,
+      "weight_scale_max_rel_diff": 0.6370843052864075,
+      "weight_corr_savedmodel_vs_mlperf_int8": 0.017641694557095057
+    },
+    {
+      "op": "3:DEPTHWISE_CONV_2D",
+      "out_scale_equal": false,
+      "out_zp_equal": true,
+      "weight_scales": "64 vs 64",
+      "weight_int8_mismatch": 571,
+      "weight_scale_max_rel_diff": 1.608180046081543,
+      "weight_corr_savedmodel_vs_mlperf_int8": 0.034480923902947117
+    },
+    {
+      "op": "4:CONV_2D",
+      "out_scale_equal": false,
+      "out_zp_equal": true,
+      "weight_scales": "64 vs 64",
+      "weight_int8_mismatch": 4073,
+      "weight_scale_max_rel_diff": 0.4844379723072052,
+      "weight_corr_savedmodel_vs_mlperf_int8": 0.0296956267787147
+    },
+    {
+      "op": "5:DEPTHWISE_CONV_2D",
+      "out_scale_equal": false,
+      "out_zp_equal": true,
+      "weight_scales": "64 vs 64",
+      "weight_int8_mismatch": 567,
+      "weight_scale_max_rel_diff": 1.7803114652633667,
+      "weight_corr_savedmodel_vs_mlperf_int8": 0.03788697705114438
+    },
+    {
+      "op": "6:CONV_2D",
+      "out_scale_equal": false,
+      "out_zp_equal": true,
+      "weight_scales": "64 vs 64",
+      "weight_int8_mismatch": 4077,
+      "weight_scale_max_rel_diff": 1.1479851007461548,
+      "weight_corr_savedmodel_vs_mlperf_int8": -0.007420302724892114
+    },
+    {
+      "op": "7:DEPTHWISE_CONV_2D",
+      "out_scale_equal": false,
+      "out_zp_equal": true,
+      "weight_scales": "64 vs 64",
+      "weight_int8_mismatch": 567,
+      "weight_scale_max_rel_diff": 2.710864543914795,
+      "weight_corr_savedmodel_vs_mlperf_int8": -0.07178605437558172
+    },
+    {
+      "op": "8:CONV_2D",
+      "out_scale_equal": false,
+      "out_zp_equal": true,
+      "weight_scales": "64 vs 64",
+      "weight_int8_mismatch": 4070,
+      "weight_scale_max_rel_diff": 0.7237526774406433,
+      "weight_corr_savedmodel_vs_mlperf_int8": 0.004071713340709763
+    },
+    {
+      "op": "9:AVERAGE_POOL_2D",
+      "out_scale_equal": false,
+      "out_zp_equal": true
+    },
+    {
+      "op": "10:RESHAPE",
+      "out_scale_equal": false,
+      "out_zp_equal": true
+    },
+    {
+      "op": "11:FULLY_CONNECTED",
+      "out_scale_equal": false,
+      "out_zp_equal": false,
+      "weight_scales": "12 vs 1",
+      "weight_corr_savedmodel_vs_mlperf_int8": 0.010411818809268107
+    },
+    {
+      "op": "12:SOFTMAX",
+      "out_scale_equal": true,
+      "out_zp_equal": true
+    }
+  ],
+  "sizes": {
+    "kws_tf221_int8.tflite": 48480,
+    "mlperf kws_ref_model.tflite": 53936
+  }
+}
