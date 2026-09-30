@@ -1,0 +1,34 @@
+{
+  "test": {
+    "n": 4890,
+    "labels_equal": true,
+    "features_bit_equal": true,
+    "max_abs_diff": 0.0
+  },
+  "val": {
+    "n": 10102,
+    "labels_equal": true,
+    "features_bit_equal": true,
+    "max_abs_diff": 0.0
+  },
+  "cal": {
+    "n": 120,
+    "labels_equal": true,
+    "features_bit_equal": true,
+    "max_abs_diff": 0.0
+  },
+  "label_counts_test": [
+    406,
+    402,
+    412,
+    405,
+    402,
+    396,
+    396,
+    411,
+    425,
+    419,
+    408,
+    408
+  ]
+}
