@@ -1,0 +1,134 @@
+{
+  "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+  "n_test": 4890,
+  "models": {
+    "fp32_keras": {
+      "accuracy": 0.9216768916155419,
+      "params_keras_total": 24908
+    },
+    "fp32_tflite_tf221": {
+      "accuracy": 0.9216768916155419,
+      "bytes": 99424,
+      "params": 22604,
+      "macs": 2656768,
+      "latency_ms": {
+        "optimized": 0.27642600002764084,
+        "xnnpack": 0.05579100002250925
+      }
+    },
+    "mlperf_float32_file_dynamic_range": {
+      "accuracy": 0.9171779141104295,
+      "bytes": 43392,
+      "params": 22604,
+      "macs": 2656768,
+      "latency_ms": {
+        "optimized": 0.2244419999897218,
+        "xnnpack": 0.0738574999559205
+      }
+    },
+    "mlperf_int8": {
+      "bytes": 53936,
+      "params": 22604,
+      "macs": 2656768,
+      "input_scale": 0.5847029089927673,
+      "input_zero_point": 83,
+      "input_values_out_of_int8_range": 3123,
+      "input_values_total": 2396100,
+      "input_values_differ_between_methods": 1182308,
+      "accuracy": {
+        "truncate(reference eval) / reference": 0.9161554192229039,
+        "truncate(reference eval) / optimized": 0.9161554192229039,
+        "truncate(reference eval) / xnnpack": 0.9165644171779141,
+        "round+clamp / reference": 0.9179959100204499,
+        "round+clamp / optimized": 0.9179959100204499,
+        "round+clamp / xnnpack": 0.9186094069529652
+      },
+      "latency_ms": {
+        "reference": 1.8950764999772218,
+        "optimized": 0.21274250002534245,
+        "xnnpack": 0.06311950028248248
+      },
+      "runtime_agreement": {
+        "truncate(reference eval)": {
+          "samples_output_differs(ref vs xnnpack)": 1696,
+          "samples_top1_differs(ref vs xnnpack)": 23,
+          "samples_output_differs(ref vs optimized)": 22
+        },
+        "round+clamp": {
+          "samples_output_differs(ref vs xnnpack)": 1723,
+          "samples_top1_differs(ref vs xnnpack)": 27,
+          "samples_output_differs(ref vs optimized)": 23
+        }
+      },
+      "mcnemar": {
+        "round+clamp vs truncate (optimized)": {
+          "only_a_correct": 55,
+          "only_b_correct": 46,
+          "p_value": 0.4261600154669939,
+          "accuracy_diff": 0.0018404907975460016
+        },
+        "xnnpack vs reference (round+clamp)": {
+          "only_a_correct": 15,
+          "only_b_correct": 12,
+          "p_value": 0.7011080384254456,
+          "accuracy_diff": 0.0006134969325153339
+        }
+      }
+    },
+    "tf221_int8": {
+      "bytes": 48480,
+      "params": 22604,
+      "macs": 2656768,
+      "input_scale": 0.5847026705741882,
+      "input_zero_point": 83,
+      "input_values_out_of_int8_range": 3123,
+      "input_values_total": 2396100,
+      "input_values_differ_between_methods": 1182312,
+      "accuracy": {
+        "truncate(reference eval) / reference": 0.9204498977505112,
+        "truncate(reference eval) / optimized": 0.9204498977505112,
+        "truncate(reference eval) / xnnpack": 0.9214723926380368,
+        "round+clamp / reference": 0.9233128834355828,
+        "round+clamp / optimized": 0.9233128834355828,
+        "round+clamp / xnnpack": 0.9259713701431492
+      },
+      "latency_ms": {
+        "reference": 1.7558754998390214,
+        "optimized": 0.20293850002417457,
+        "xnnpack": 0.0625874997695064
+      },
+      "runtime_agreement": {
+        "truncate(reference eval)": {
+          "samples_output_differs(ref vs xnnpack)": 1860,
+          "samples_top1_differs(ref vs xnnpack)": 29,
+          "samples_output_differs(ref vs optimized)": 16
+        },
+        "round+clamp": {
+          "samples_output_differs(ref vs xnnpack)": 1814,
+          "samples_top1_differs(ref vs xnnpack)": 31,
+          "samples_output_differs(ref vs optimized)": 14
+        }
+      },
+      "mcnemar": {
+        "round+clamp vs truncate (optimized)": {
+          "only_a_correct": 59,
+          "only_b_correct": 45,
+          "p_value": 0.20217310609617567,
+          "accuracy_diff": 0.002862985685071595
+        },
+        "xnnpack vs reference (round+clamp)": {
+          "only_a_correct": 19,
+          "only_b_correct": 6,
+          "p_value": 0.01463329792022705,
+          "accuracy_diff": 0.00265848670756641
+        }
+      }
+    }
+  },
+  "mcnemar_fp32_keras_vs_tf221_int8": {
+    "only_a_correct": 31,
+    "only_b_correct": 39,
+    "p_value": 0.40296307504607976,
+    "accuracy_diff": -0.0016359918200409274
+  }
+}

@@ -1,0 +1,381 @@
+{
+  "granularity": {
+    "per_channel": {
+      "accuracy": 0.9233128834355828,
+      "bytes": 48480,
+      "weight_scales_per_layer": [
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        12
+      ]
+    },
+    "per_tensor": {
+      "accuracy": 0.9224948875255624,
+      "bytes": 34584,
+      "weight_scales_per_layer": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "mcnemar": {
+      "only_a_correct": 23,
+      "only_b_correct": 19,
+      "p_value": 0.6439689563703723,
+      "accuracy_diff": 0.0008179959100204082
+    }
+  },
+  "calibration_size": {
+    "reference_120": 0.9233128834355828,
+    "1": [
+      0.9067484662576687,
+      0.9231083844580777,
+      0.9206543967280164,
+      0.9065439672801636,
+      0.9042944785276074
+    ],
+    "10": [
+      0.9229038854805726,
+      0.9222903885480572,
+      0.9235173824130879,
+      0.9245398773006135,
+      0.9222903885480572
+    ],
+    "100": [
+      0.9249488752556237,
+      0.9263803680981595,
+      0.9229038854805726,
+      0.9237218813905931,
+      0.9233128834355828
+    ],
+    "500": [
+      0.9237218813905931,
+      0.9247443762781186,
+      0.9276073619631902,
+      0.9241308793456032,
+      0.9231083844580777
+    ]
+  },
+  "float_vs_int8": {
+    "only_a_correct": 31,
+    "only_b_correct": 39,
+    "p_value": 0.40296307504607976,
+    "accuracy_diff": -0.0016359918200409274
+  },
+  "weight_sim": {
+    "float_baseline": 0.9216768916155419,
+    "configs": [
+      {
+        "bits": 8,
+        "per_channel": true,
+        "symmetric": true,
+        "accuracy": 0.9241308793456032,
+        "mcnemar_vs_float": {
+          "only_a_correct": 4,
+          "only_b_correct": 16,
+          "p_value": 0.01181793212890625,
+          "accuracy_diff": -0.0024539877300613355
+        },
+        "sqnr_db_mean": 46.386552224866094,
+        "sqnr_db_min": 44.35046860324359,
+        "sqnr_db_per_layer": [
+          44.62,
+          47.32,
+          44.74,
+          47.84,
+          44.99,
+          48.34,
+          44.9,
+          49.45,
+          44.35,
+          47.32
+        ]
+      },
+      {
+        "bits": 8,
+        "per_channel": true,
+        "symmetric": false,
+        "accuracy": 0.9214723926380368,
+        "mcnemar_vs_float": {
+          "only_a_correct": 11,
+          "only_b_correct": 10,
+          "p_value": 1.0,
+          "accuracy_diff": 0.00020449897750507429
+        },
+        "sqnr_db_mean": 47.9290346602019,
+        "sqnr_db_min": 45.360416312627095,
+        "sqnr_db_per_layer": [
+          45.72,
+          49.11,
+          45.75,
+          49.56,
+          45.79,
+          50.12,
+          45.64,
+          53.89,
+          45.36,
+          48.35
+        ]
+      },
+      {
+        "bits": 8,
+        "per_channel": false,
+        "symmetric": true,
+        "accuracy": 0.9218813905930471,
+        "mcnemar_vs_float": {
+          "only_a_correct": 12,
+          "only_b_correct": 13,
+          "p_value": 1.0,
+          "accuracy_diff": -0.0002044989775051853
+        },
+        "sqnr_db_mean": 41.60907652199525,
+        "sqnr_db_min": 37.99337997776423,
+        "sqnr_db_per_layer": [
+          37.99,
+          41.17,
+          40.81,
+          42.23,
+          41.8,
+          42.96,
+          41.68,
+          41.56,
+          41.42,
+          44.44
+        ]
+      },
+      {
+        "bits": 8,
+        "per_channel": false,
+        "symmetric": false,
+        "accuracy": 0.9196319018404908,
+        "mcnemar_vs_float": {
+          "only_a_correct": 20,
+          "only_b_correct": 10,
+          "p_value": 0.09873714670538902,
+          "accuracy_diff": 0.002044989775051076
+        },
+        "sqnr_db_mean": 42.53273074001883,
+        "sqnr_db_min": 38.75505517317254,
+        "sqnr_db_per_layer": [
+          38.76,
+          42.05,
+          41.04,
+          43.08,
+          42.2,
+          44.14,
+          41.82,
+          43.52,
+          42.15,
+          46.57
+        ]
+      },
+      {
+        "bits": 4,
+        "per_channel": true,
+        "symmetric": true,
+        "accuracy": 0.9106339468302659,
+        "mcnemar_vs_float": {
+          "only_a_correct": 154,
+          "only_b_correct": 100,
+          "p_value": 0.0008478992047401534,
+          "accuracy_diff": 0.01104294478527601
+        },
+        "sqnr_db_mean": 21.284479344708963,
+        "sqnr_db_min": 19.205055801825797,
+        "sqnr_db_per_layer": [
+          19.61,
+          22.45,
+          19.63,
+          22.61,
+          19.66,
+          23.28,
+          19.66,
+          24.61,
+          19.21,
+          22.13
+        ]
+      },
+      {
+        "bits": 4,
+        "per_channel": true,
+        "symmetric": false,
+        "accuracy": 0.9057259713701431,
+        "mcnemar_vs_float": {
+          "only_a_correct": 175,
+          "only_b_correct": 97,
+          "p_value": 2.608527957800091e-06,
+          "accuracy_diff": 0.015950920245398792
+        },
+        "sqnr_db_mean": 23.38228764138029,
+        "sqnr_db_min": 20.86668410967702,
+        "sqnr_db_per_layer": [
+          21.17,
+          24.74,
+          21.24,
+          24.71,
+          21.18,
+          25.71,
+          21.19,
+          29.14,
+          20.87,
+          23.86
+        ]
+      },
+      {
+        "bits": 4,
+        "per_channel": false,
+        "symmetric": true,
+        "accuracy": 0.5736196319018405,
+        "mcnemar_vs_float": {
+          "only_a_correct": 1727,
+          "only_b_correct": 25,
+          "p_value": 0.0,
+          "accuracy_diff": 0.3480572597137014
+        },
+        "sqnr_db_mean": 16.429973210968704,
+        "sqnr_db_min": 12.760824323190349,
+        "sqnr_db_per_layer": [
+          12.76,
+          15.84,
+          15.67,
+          17.12,
+          16.52,
+          17.61,
+          16.38,
+          16.81,
+          16.23,
+          19.35
+        ]
+      },
+      {
+        "bits": 4,
+        "per_channel": false,
+        "symmetric": false,
+        "accuracy": 0.8016359918200409,
+        "mcnemar_vs_float": {
+          "only_a_correct": 636,
+          "only_b_correct": 49,
+          "p_value": 3.3968257559369196e-131,
+          "accuracy_diff": 0.12004089979550103
+        },
+        "sqnr_db_mean": 17.762880654098886,
+        "sqnr_db_min": 13.999756313640928,
+        "sqnr_db_per_layer": [
+          14.0,
+          17.18,
+          16.42,
+          17.92,
+          17.57,
+          18.97,
+          17.14,
+          19.01,
+          17.58,
+          21.84
+        ]
+      }
+    ],
+    "symmetric_vs_asymmetric": [
+      {
+        "bits": 8,
+        "per_channel": true,
+        "only_a_correct": 18,
+        "only_b_correct": 5,
+        "p_value": 0.010622024536132812,
+        "accuracy_diff": 0.00265848670756641
+      },
+      {
+        "bits": 8,
+        "per_channel": false,
+        "only_a_correct": 23,
+        "only_b_correct": 12,
+        "p_value": 0.0895310789346695,
+        "accuracy_diff": 0.0022494887525562612
+      },
+      {
+        "bits": 4,
+        "per_channel": true,
+        "only_a_correct": 147,
+        "only_b_correct": 123,
+        "p_value": 0.16146869788461676,
+        "accuracy_diff": 0.004907975460122782
+      },
+      {
+        "bits": 4,
+        "per_channel": false,
+        "only_a_correct": 78,
+        "only_b_correct": 1193,
+        "p_value": 5.532643221689936e-257,
+        "accuracy_diff": -0.22801635991820035
+      }
+    ]
+  },
+  "layer_sensitivity": {
+    "setting": "4-bit, per-tensor, symmetric",
+    "rows": [
+      {
+        "op": "0:CONV_2D",
+        "accuracy_only_this_layer_quantized": 0.9012269938650307,
+        "accuracy_all_but_this_layer_quantized": 0.6734151329243354
+      },
+      {
+        "op": "1:DEPTHWISE_CONV_2D",
+        "accuracy_only_this_layer_quantized": 0.916359918200409,
+        "accuracy_all_but_this_layer_quantized": 0.5834355828220859
+      },
+      {
+        "op": "2:CONV_2D",
+        "accuracy_only_this_layer_quantized": 0.9014314928425358,
+        "accuracy_all_but_this_layer_quantized": 0.6678936605316973
+      },
+      {
+        "op": "3:DEPTHWISE_CONV_2D",
+        "accuracy_only_this_layer_quantized": 0.9173824130879346,
+        "accuracy_all_but_this_layer_quantized": 0.5568507157464213
+      },
+      {
+        "op": "4:CONV_2D",
+        "accuracy_only_this_layer_quantized": 0.901635991820041,
+        "accuracy_all_but_this_layer_quantized": 0.5783231083844581
+      },
+      {
+        "op": "5:DEPTHWISE_CONV_2D",
+        "accuracy_only_this_layer_quantized": 0.9122699386503067,
+        "accuracy_all_but_this_layer_quantized": 0.6075664621676892
+      },
+      {
+        "op": "6:CONV_2D",
+        "accuracy_only_this_layer_quantized": 0.8278118609406953,
+        "accuracy_all_but_this_layer_quantized": 0.7668711656441718
+      },
+      {
+        "op": "7:DEPTHWISE_CONV_2D",
+        "accuracy_only_this_layer_quantized": 0.9143149284253579,
+        "accuracy_all_but_this_layer_quantized": 0.6012269938650306
+      },
+      {
+        "op": "8:CONV_2D",
+        "accuracy_only_this_layer_quantized": 0.908997955010225,
+        "accuracy_all_but_this_layer_quantized": 0.6276073619631902
+      },
+      {
+        "op": "11:FULLY_CONNECTED",
+        "accuracy_only_this_layer_quantized": 0.9192229038854806,
+        "accuracy_all_but_this_layer_quantized": 0.5922290388548057
+      }
+    ]
+  }
+}
