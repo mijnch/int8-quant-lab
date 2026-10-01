@@ -55,11 +55,15 @@ POLICIES = {
                 "FULLY_CONNECTED": "fp32", "SOFTMAX": "optimized"},
 }
 
-# Windows 휠(MSVC 빌드): ruy의 x86 SIMD 커널은 __AVX2__·__AVX512F__가 컴파일 시점에 정의돼야
-# 들어가는데(ruy platform.h), MSVC는 /arch 옵션 없이는 이를 정의하지 않는다. 그러면 ruy는
-# 표준 C++ 경로(apply_multiplier.cc, 한 번 반올림)를 쓴다. scripts/probe_rounding.py로 CI에서 확인.
+# Windows 휠(MSVC 빌드)은 최적화 커널의 경로가 다르다(scripts/probe_rounding.py로 CI에서 확인).
+# - CONV·FC: ruy의 x86 SIMD 커널은 __AVX2__·__AVX512F__가 컴파일 시점에 정의돼야 들어가는데
+#   (ruy platform.h) MSVC는 /arch 없이는 정의하지 않아, 표준 C++ 경로(apply_multiplier.cc,
+#   한 번 반올림)를 쓴다.
+# - DEPTHWISE: x86의 NEON→SSE 경로는 `__GNUC__ && __SSE4_1__`일 때만 켜져(neon_check.h)
+#   MSVC에서는 스칼라 경로(double)만 쓴다.
 if sys.platform == "win32":
-    POLICIES["optimized"].update({"CONV_2D": "single", "FULLY_CONNECTED": "single"})
+    POLICIES["optimized"].update({"CONV_2D": "single", "DEPTHWISE_CONV_2D": "double",
+                                  "FULLY_CONNECTED": "single"})
 
 
 class Model:
