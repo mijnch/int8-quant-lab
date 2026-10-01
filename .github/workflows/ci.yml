@@ -30,5 +30,8 @@ jobs:
       - name: 실행 환경 기록(커널 선택은 CPU 명령어 집합에 따라 달라질 수 있다)
         run: python -c "import platform, numpy, importlib.metadata as m; print(platform.platform(), platform.machine(), platform.processor()); print('numpy', numpy.__version__, 'ai-edge-litert', m.version('ai-edge-litert'))"
 
+      - name: 재양자화 규칙 탐침(연산·실행 경로마다 어느 규칙이 맞는지 표로 남긴다)
+        run: python scripts/probe_rounding.py --models 40
+
       - name: 테스트
         run: python -m pytest -q
