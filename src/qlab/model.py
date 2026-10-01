@@ -3,6 +3,7 @@ kernels.py로 망 전체를 정수 산술로 실행한다.
 
 flatbuffer 스키마는 ai-edge-litert에 포함된 `schema_py_generated`를 쓴다.
 """
+import sys
 from dataclasses import dataclass, field
 
 import numpy as np
@@ -53,6 +54,12 @@ POLICIES = {
     "xnnpack": {"CONV_2D": "fp32", "DEPTHWISE_CONV_2D": "fp32",
                 "FULLY_CONNECTED": "fp32", "SOFTMAX": "optimized"},
 }
+
+# Windows 휠(MSVC 빌드): ruy의 x86 SIMD 커널은 __AVX2__·__AVX512F__가 컴파일 시점에 정의돼야
+# 들어가는데(ruy platform.h), MSVC는 /arch 옵션 없이는 이를 정의하지 않는다. 그러면 ruy는
+# 표준 C++ 경로(apply_multiplier.cc, 한 번 반올림)를 쓴다. scripts/probe_rounding.py로 CI에서 확인.
+if sys.platform == "win32":
+    POLICIES["optimized"].update({"CONV_2D": "single", "FULLY_CONNECTED": "single"})
 
 
 class Model:
