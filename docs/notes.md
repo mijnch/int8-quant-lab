@@ -59,14 +59,14 @@
 같은 `.tflite`라도 커널 경로마다 재양자화 산술이 다르다. 모두 "실수 배율을 곱하고 반올림"하지만
 **동률(정확히 .5)을 어느 쪽으로 보내는지, 몇 번 반올림하는지**가 다르다.
 
-| 이름 | 계산 | 쓰는 곳(x86-64, 원문) |
+| 이름 | 계산 | 쓰는 곳(Linux x86-64 휠, 원문) |
 |---|---|---|
 | double | SRDHM(동률 +∞) → RoundingDivideByPOT(동률 0에서 먼 쪽) | 참조 커널의 CONV·DEPTHWISE, 최적화 DEPTHWISE의 나머지 채널 (`common.cc`) |
 | float | round(double(acc) × double 배율) | 참조 커널의 FULLY_CONNECTED (`reference/integer_ops/fully_connected.h`) — LiteRT 2.x에서 바뀐 부분 |
 | ruy | ((x·M + 2³⁰) >> 31), 이어서 (v + 2^(r−1)) >> r — 둘 다 동률 +∞ | 최적화 커널의 CONV·FC (`cpu_backend_gemm.h`: x86 기본값은 int8 → ruy; ruy `kernel_avx512.cc`) |
 | neon8 | 앞 8·⌊C/8⌋개 채널: vqrdmulhq → vrshlq(동률 +∞), 나머지 채널: double | 최적화 커널의 DEPTHWISE (`optimized_ops.h` Quantize; x86에서는 NEON_2_SSE가 NEON 명령을 SSE로 흉내) |
 | fp32 | rint(float32(acc) × float32(s_in·s_w/s_out)) — 동률은 짝수 쪽 | XNNPACK의 CONV·DEPTHWISE·FC (`convolution-nhwc.c`, `qs8-qc8w-gemm/…fp32…`) |
-| single | 정확한 곱을 한 번 반올림(동률 +∞) | `TFLITE_SINGLE_ROUNDING` 빌드 — 이 휠에서는 쓰이지 않음을 실측으로 확인 |
+| single | 정확한 곱을 한 번 반올림(동률 +∞) | Linux 휠에서는 쓰이지 않음(`TFLITE_SINGLE_ROUNDING` 빌드가 아님을 실측으로 확인). Windows 휠의 최적화 CONV·FC가 이 식을 쓴다(아래) |
 
 - AVERAGE_POOL_2D와 SOFTMAX(int8)는 XNNPACK에 위임되지 않아 TFLite 커널이 돈다(실행 계획으로 확인).
 - int8 SOFTMAX는 참조 커널이 gemmlowp 고정소수점 exp·역수(`reference/softmax.h`), 최적화 커널이
@@ -77,6 +77,13 @@
   활성함수·보폭·패딩·채널 수를 무작위로 바꾼 **단일 연산 모델을 flatbuffer로 직접 만들어**
   (`src/qlab/synth.py`) 세 런타임에 돌렸다. 처음 정책(최적화 DEPTHWISE = double)은 100개 중 97개만
   맞았고, 틀린 3개가 모두 채널 8개짜리라는 데서 `optimized_ops::Quantize`의 8채널 묶음 경로를 찾았다.
+- **Windows 휠은 최적화 커널의 규칙이 다르다.** 처음 Windows CI에서 최적화 CONV·FC만 틀렸다.
+  ruy의 x86 SIMD 커널은 `__AVX2__`·`__AVX512F__`가 컴파일 시점에 정의돼야 들어가는데(ruy `platform.h`)
+  MSVC는 `/arch` 없이는 정의하지 않으므로, ruy가 표준 C++ 경로(`apply_multiplier.cc`, 한 번 반올림)를
+  쓴다고 보고 고쳤다. 그러자 CI에 넣은 탐침(`scripts/probe_rounding.py`)이 하나를 더 드러냈다: 최적화
+  DEPTHWISE도 Windows에서는 `double`이었다(40/40, `neon8`은 35/40). x86의 NEON→SSE 경로는
+  `defined __GNUC__ && defined __SSE4_1__`일 때만 켜지는데(`optimized/neon_check.h`) MSVC는 `__GNUC__`를
+  정의하지 않는다. 이 탐침은 이제 CI에서 정책이 하나라도 어긋나면 실패한다.
 - XNNPACK은 연산을 묶어 한 덩어리로 위임하므로 중간 텐서가 보이지 않는다.
   `experimental_disable_delegate_node_fusion=True`로 연산마다 따로 위임시키면 층별 출력을 비교할 수 있다.
 
@@ -91,8 +98,8 @@
 
 ## 6. 확인하지 못한 것
 
-- **다른 플랫폼.** 위 표는 Linux x86-64(AVX-512)에서 확인했다. ARM(NEON 원본, 점곱 3×3 커널)이나 다른
-  컴파일 설정에서는 경로가 달라질 수 있다. CI는 Ubuntu와 Windows에서 같은 테스트를 돌린다.
+- **다른 플랫폼.** 정확도와 망 전체 대조는 Linux x86-64(AVX-512)에서 했고, Windows x86-64는 CI의 탐침과
+  테스트로만 확인했다. ARM(NEON 원본, 점곱 3×3 커널)과 macOS는 확인하지 않았다.
 - **마이크로컨트롤러.** TFLite Micro와 CMSIS-NN 커널의 재양자화는 확인하지 않았다. 하드웨어가 없어
   지연·전력도 재지 않았다.
 - **MLPerf 배포 파일의 출처.** SavedModel과 `.tflite`가 왜 다른 모델인지는 모른다.

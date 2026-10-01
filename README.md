@@ -8,15 +8,15 @@ MLPerf Tiny의 키워드 인식(KWS) 레퍼런스 모델(DS-CNN)을 대상으로
 
 > 한 줄 요약 — 변환기가 정한 scale·zero-point·int8 값(가중치 22,016개, bias 588개)을 전부 똑같이
 > 재현했고, 세 가지 실행 경로(참조 커널·최적화 커널·XNNPACK)의 출력을 테스트 세트 전체에서
-> 한 비트도 틀리지 않게 재현했습니다. 그 과정에서 **같은 모델이라도 실행 경로마다 반올림 규칙이
-> 5가지로 다르다**는 것을 원문과 실측으로 확인했습니다.
+> 한 비트도 틀리지 않게 재현했습니다. 그 과정에서 **같은 모델이라도 실행 경로와 플랫폼에 따라
+> 반올림 규칙이 6가지로 갈린다**는 것을 원문과 실측으로 확인했습니다.
 
 ## 핵심 결과
 
 | | 결과 | 근거 |
 |---|---|---|
 | T1 양자화 파라미터 재현 | 활성값 scale·zp **14/14**, int8 가중치 **22,016/22,016**, int32 bias **588/588** 일치 | [results.md §2](results/results.md#2-t1--변환기가-정한-양자화-파라미터값의-재현) |
-| T2·T3 정수 추론 재현 | 테스트 4,890개 × 출력 12개, 모델 2개 × 런타임 3개 **전부 불일치 0** · 무작위 단일 연산 모델 500개 × 런타임 3개 전부 일치 | [§3](results/results.md#3-t2t3--numpy-정수-커널-대-litert-세-실행-경로-비트-단위) |
+| T2·T3 정수 추론 재현 | 테스트 4,890개 × 출력 12개, 모델 2개 × 런타임 3개 **전부 불일치 0** · 무작위 단일 연산 모델 500개 × 런타임 3개 전부 일치 (Linux 측정, Windows는 CI로 확인) | [§3](results/results.md#3-t2t3--numpy-정수-커널-대-litert-세-실행-경로-비트-단위) |
 | FP32 → INT8 | 정확도 92.17% → 92.33%, 파일 99.4 KB → 48.5 KB. 차이는 **우연과 구별되지 않음**(McNemar p=0.40) | [§4](results/results.md#4-fp32-대-int8--정확도크기) |
 | 4비트 가중치(시뮬레이션) | 채널별 91.1% 대 **텐서별 대칭 57.4%** · 텐서별 비대칭 80.2%. 1×1 합성곱 한 층의 영향이 가장 큼 | [§5 C·D](results/results.md#5-설계-변수-실험) |
 
@@ -32,15 +32,20 @@ scale·zero-point를, float 가중치로 채널별 scale과 int8 값을, bias를
 
 **T2·T3 — 정수 산술 재현** (`fixedpoint.py`, `kernels.py`, `model.py`). CONV·DEPTHWISE·FC·
 AVERAGE_POOL·SOFTMAX를 int32 누산 → 재양자화 → zero-point → 포화의 정수 연산으로 구현했습니다.
-재양자화는 런타임마다 달라서, 원문을 읽고 5가지를 모두 구현했습니다.
+재양자화는 실행 경로와 플랫폼마다 달라서, 원문을 읽고 6가지를 구현했습니다.
 
-| 이름 | 계산 | 쓰는 곳 (Linux x86-64) |
-|---|---|---|
-| double | SRDHM(동률 +∞) → RoundingDivideByPOT(동률 0에서 먼 쪽) | 참조 커널 CONV·DEPTHWISE |
-| float | round(double(누산) × double 배율) | 참조 커널 FC |
-| ruy | 두 번 반올림, 둘 다 동률 +∞ | 최적화 커널 CONV·FC (ruy 행렬곱) |
-| neon8 | 8채널 묶음은 NEON 경로(x86에선 SSE로 흉내), 나머지 채널은 double | 최적화 커널 DEPTHWISE |
-| fp32 | rint(float32(누산) × float32 배율), 동률은 짝수 쪽 | XNNPACK CONV·DEPTHWISE·FC |
+| 이름 | 계산 | Linux x86-64 | Windows x86-64 |
+|---|---|---|---|
+| double | SRDHM(동률 +∞) → RoundingDivideByPOT(동률 0에서 먼 쪽) | 참조 CONV·DEPTHWISE | 참조 CONV·DEPTHWISE, 최적화 DEPTHWISE |
+| float | round(double(누산) × double 배율) | 참조 FC | 참조 FC |
+| ruy | 두 번 반올림, 둘 다 동률 +∞ | 최적화 CONV·FC (ruy SIMD 커널) | — |
+| neon8 | 8채널 묶음은 NEON 경로(x86에선 SSE로 흉내), 나머지 채널은 double | 최적화 DEPTHWISE | — |
+| single | 정확한 곱을 한 번 반올림, 동률 +∞ | — | 최적화 CONV·FC (ruy 표준 C++ 경로) |
+| fp32 | rint(float32(누산) × float32 배율), 동률은 짝수 쪽 | XNNPACK CONV·DEPTHWISE·FC | XNNPACK CONV·DEPTHWISE·FC |
+
+Windows 휠(MSVC 빌드)에서는 ruy의 SIMD 커널과 x86 NEON→SSE 경로가 GCC/Clang용 컴파일 조건
+때문에 빠져 있어 최적화 커널의 규칙이 다릅니다. Windows CI에서 처음 드러났고, 원문 조건으로 확인한 뒤
+`scripts/probe_rounding.py`(연산·경로별로 맞는 규칙을 표로 출력)를 CI에 넣어 확인합니다.
 
 실제 모델에서는 모든 합성곱 뒤의 ReLU가 음수 결과를 잘라내 이 차이가 대부분 가려집니다. 그래서
 scale·zero-point·활성함수·보폭·채널 수를 무작위로 바꾼 **단일 연산 `.tflite`를 직접 만들어**
@@ -108,6 +113,7 @@ src/qlab/
   data.py        Speech Commands → MFCC          (TensorFlow 필요)
   convert.py     Keras → .tflite                 (TensorFlow 필요)
 scripts/         prepare_data · verify_t1 · verify_bitexact · evaluate · experiments · report
+                 probe_rounding (이 컴퓨터의 런타임이 어떤 반올림 규칙을 쓰는지 표로 — TF 불필요)
 tests/           pytest (TensorFlow 없이)
 models/          MLPerf 배포 모델·보정 인덱스, TF 2.21 변환 결과(int8·보정용·float32)
 results/         results.md(자동 생성), *.json, figures/
@@ -126,8 +132,8 @@ pdf-ocr-korean-textbook에서는 ONNX Runtime의 동적 int8 양자화(`quantize
 
 ## 한계와 다음 단계
 
-- 커널 규칙은 Linux x86-64(AVX-512)에서 확인했습니다. CI는 Ubuntu와 Windows에서 같은 테스트를 돌립니다.
-  ARM에서는 다른 커널(점곱 3×3 등)이 선택될 수 있습니다.
+- 정확도·지연 측정과 망 전체 대조는 Linux x86-64(AVX-512)에서 했습니다. Windows x86-64는 CI(규칙 탐침 +
+  테스트)로만 확인했습니다. ARM(NEON 원본, 점곱 3×3 커널 등)과 macOS는 확인하지 않았습니다.
 - 다음: 마이크로컨트롤러 실측(TFLite Micro, CMSIS-NN의 재양자화 대조), 양자화 인식 학습(QAT),
   층별 민감도에 따른 혼합 정밀도.
 
@@ -151,8 +157,10 @@ Speech Commands v2).
 - **T2/T3 (integer inference):** conv, depthwise conv, fully connected, average pool and softmax
   reproduce the library output with zero mismatches on the full 4,890-clip test set, for two models
   and three execution paths (reference kernels, optimized kernels, XNNPACK), and on 500 randomly
-  generated single-op models run on each of the three paths. Doing so required five different requantization rules — the same model
-  rounds differently depending on the kernel path — each traced to its source file.
+  generated single-op models run on each of the three paths (measured on Linux; Windows checked in CI).
+  Doing so required six requantization rules — the same model rounds differently depending on the
+  kernel path and on the platform's build (the Windows wheel lacks ruy's SIMD kernels and the x86
+  NEON-to-SSE path) — each traced to its source file.
 - **Experiments:** FP32 92.17% vs INT8 92.33% (not distinguishable, McNemar p=0.40) at half the file size;
   at 8 bits, per-channel vs per-tensor, symmetric vs asymmetric and ≥10 calibration samples make no
   detectable difference, while 4-bit per-tensor symmetric weights collapse to 57.4% (simulation),

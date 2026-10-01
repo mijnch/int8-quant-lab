@@ -34,6 +34,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--models", type=int, default=40, help="연산 종류마다 만들 무작위 모델 수")
     ap.add_argument("--seed", type=int, default=7)
+    ap.add_argument("--check", action="store_true", help="정책이 하나라도 어긋나면 종료 코드 1")
     a = ap.parse_args()
     print(f"{platform.platform()} · {platform.machine()} · models/kind={a.models}")
     rng = np.random.default_rng(a.seed)
@@ -62,6 +63,8 @@ def main():
             print(f"  {mode:10s} " + "".join(cells))
             ok &= count[mode][chosen] == a.models
     print("\n현재 정책이 모든 모델에서 일치:", "예" if ok else "아니오")
+    if a.check and not ok:
+        raise SystemExit(1)
 
 
 if __name__ == "__main__":
