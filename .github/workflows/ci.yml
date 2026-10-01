@@ -31,7 +31,7 @@ jobs:
         run: python -c "import platform, numpy, importlib.metadata as m; print(platform.platform(), platform.machine(), platform.processor()); print('numpy', numpy.__version__, 'ai-edge-litert', m.version('ai-edge-litert'))"
 
       - name: 재양자화 규칙 탐침(연산·실행 경로마다 어느 규칙이 맞는지 표로 남긴다)
-        run: python scripts/probe_rounding.py --models 40
+        run: python scripts/probe_rounding.py --models 40 --check
 
       - name: 테스트
         run: python -m pytest -q
