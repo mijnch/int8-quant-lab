@@ -47,13 +47,12 @@ def sqnr_db(w, wq):
     return float("inf") if noise == 0 else float(10 * np.log10(np.sum(w ** 2) / noise))
 
 
-def quantize_weights_in_model(float_tflite, bits, symmetric, per_channel, ops=None):
-    """float `.tflite`의 CONV·DEPTHWISE·FC 가중치를 fake_quant로 바꾼 새 모델 bytes와,
-    층별 가중치 SQNR(dB)을 돌려준다. bias는 float 그대로 둔다.
-    ops: 양자화할 연산 번호의 집합(None이면 전부) — 층별 민감도 분석용."""
+def map_weights(float_tflite, fn, ops=None):
+    """float `.tflite`의 CONV·DEPTHWISE·FC 가중치 w를 fn(op_index, kind, w)의 반환값으로 바꾼
+    새 모델 bytes를 돌려준다. bias는 float 그대로 둔다. ops: 바꿀 연산 번호의 집합(None이면 전부).
+    quantize_weights_in_model의 일반형 — 절제 실험(일부 채널만 float로 두기 등)에 쓴다."""
     m = S.ModelT.InitFromPackedBuf(float_tflite, 0)
     sg = m.subgraphs[0]
-    sqnr = []
     for i, op in enumerate(sg.operators):
         oc = m.operatorCodes[op.opcodeIndex]
         kind = _OP_NAMES[max(oc.builtinCode, oc.deprecatedBuiltinCode)]
@@ -64,9 +63,24 @@ def quantize_weights_in_model(float_tflite, bits, symmetric, per_channel, ops=No
             raise ValueError("가중치가 float32인 모델이어야 한다(순수 float 변환본)")
         buf = m.buffers[t.buffer]
         w = np.frombuffer(bytes(bytearray(buf.data)), np.float32).reshape(tuple(t.shape))
-        wq = fake_quant(w, bits, symmetric, _WEIGHT_AXIS[kind] if per_channel else None)
-        sqnr.append(sqnr_db(w, wq))
+        wq = np.ascontiguousarray(fn(i, kind, w), dtype=np.float32)
+        if wq.shape != w.shape:
+            raise ValueError(f"연산 {i}: 가중치 모양이 바뀌면 안 된다 {w.shape} → {wq.shape}")
         buf.data = np.frombuffer(wq.tobytes(), np.uint8)
     fb = flatbuffers.Builder(1024)
     fb.Finish(m.Pack(fb), file_identifier=b"TFL3")
-    return bytes(fb.Output()), sqnr
+    return bytes(fb.Output())
+
+
+def quantize_weights_in_model(float_tflite, bits, symmetric, per_channel, ops=None):
+    """float `.tflite`의 CONV·DEPTHWISE·FC 가중치를 fake_quant로 바꾼 새 모델 bytes와,
+    층별 가중치 SQNR(dB)을 돌려준다. bias는 float 그대로 둔다.
+    ops: 양자화할 연산 번호의 집합(None이면 전부) — 층별 민감도 분석용."""
+    sqnr = []
+
+    def fn(_i, kind, w):
+        wq = fake_quant(w, bits, symmetric, _WEIGHT_AXIS[kind] if per_channel else None)
+        sqnr.append(sqnr_db(w, wq))
+        return wq
+
+    return map_weights(float_tflite, fn, ops), sqnr
