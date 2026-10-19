@@ -1,0 +1,1032 @@
+{
+  "setting": "4-bit, per-tensor, symmetric(narrow), weights only (activations float)",
+  "layers": [
+    {
+      "op": "0:CONV_2D",
+      "shape": [
+        64,
+        10,
+        4,
+        1
+      ],
+      "n": 2560,
+      "channels": 64,
+      "absmax": 0.22346331179141998,
+      "channel_absmax_median": 0.08232047036290169,
+      "outlier_ratio_max_over_median": 2.7145533888023716,
+      "channel_absmax_top3": [
+        0.22346331179141998,
+        0.195592999458313,
+        0.18686211109161377
+      ],
+      "scale_per_tensor_4bit": 0.03192333025591714,
+      "scale_per_channel_4bit_median": 0.011760067194700241,
+      "rms": 0.04022059681649597,
+      "quant": {
+        "pt4": {
+          "bits": 4,
+          "per_channel": false,
+          "zero_fraction": 0.38828125,
+          "mse_measured": 8.566719818623627e-05,
+          "mse_uniform_model": 8.492491788569623e-05,
+          "mse_from_zeroed": 3.120020512471654e-05,
+          "mse_from_rest": 5.4466993061519725e-05,
+          "mse_uniform_model_rest_only": 8.492491788569623e-05,
+          "sqnr_db_measured": 12.760824580557532,
+          "sqnr_db_uniform_model": 12.798618856219866
+        },
+        "pc4": {
+          "bits": 4,
+          "per_channel": true,
+          "zero_fraction": 0.150390625,
+          "mse_measured": 1.7681388325000606e-05,
+          "mse_uniform_model": 1.8113188296011427e-05,
+          "mse_from_zeroed": 3.204518760014359e-06,
+          "mse_from_rest": 1.4476869564986252e-05,
+          "mse_uniform_model_rest_only": 1.748242443508812e-05,
+          "sqnr_db_measured": 19.613806588568224,
+          "sqnr_db_uniform_model": 19.50902119383096
+        },
+        "pt8": {
+          "bits": 8,
+          "per_channel": false,
+          "zero_fraction": 0.021875,
+          "mse_measured": 2.567787361426279e-07,
+          "mse_uniform_model": 2.580024165415782e-07,
+          "mse_from_zeroed": 5.219106544643352e-09,
+          "mse_from_rest": 2.515596295979845e-07,
+          "mse_uniform_model_rest_only": 2.580024165415782e-07,
+          "sqnr_db_measured": 37.993379643004026,
+          "sqnr_db_uniform_model": 37.97273247505387
+        }
+      }
+    },
+    {
+      "op": "1:DEPTHWISE_CONV_2D",
+      "shape": [
+        1,
+        3,
+        3,
+        64
+      ],
+      "n": 576,
+      "channels": 64,
+      "absmax": 2.545833110809326,
+      "channel_absmax_median": 1.1695783138275146,
+      "outlier_ratio_max_over_median": 2.1767102559194482,
+      "channel_absmax_top3": [
+        2.545833110809326,
+        2.0359175205230713,
+        2.0028882026672363
+      ],
+      "scale_per_tensor_4bit": 0.3636904444013323,
+      "scale_per_channel_4bit_median": 0.1670826162610735,
+      "rms": 0.6562153878176249,
+      "quant": {
+        "pt4": {
+          "bits": 4,
+          "per_channel": false,
+          "zero_fraction": 0.24131944444444445,
+          "mse_measured": 0.011212063028132139,
+          "mse_uniform_model": 0.011022561612403217,
+          "mse_from_zeroed": 0.003012043924485247,
+          "mse_from_rest": 0.008200019103646893,
+          "mse_uniform_model_rest_only": 0.01102256161240322,
+          "sqnr_db_measured": 15.844072897137039,
+          "sqnr_db_uniform_model": 15.918102851117663
+        },
+        "pc4": {
+          "bits": 4,
+          "per_channel": true,
+          "zero_fraction": 0.0954861111111111,
+          "mse_measured": 0.002449971457109985,
+          "mse_uniform_model": 0.0027687861851732284,
+          "mse_from_zeroed": 0.0004969948904130116,
+          "mse_from_rest": 0.0019529765666969736,
+          "mse_uniform_model_rest_only": 0.0026167772453157562,
+          "sqnr_db_measured": 22.449317954414347,
+          "sqnr_db_uniform_model": 21.918034007924817
+        },
+        "pt8": {
+          "bits": 8,
+          "per_channel": false,
+          "zero_fraction": 0.010416666666666666,
+          "mse_measured": 3.2854610482567744e-05,
+          "mse_uniform_model": 3.3486609151699274e-05,
+          "mse_from_zeroed": 6.074502532337544e-07,
+          "mse_from_rest": 3.224716022933399e-05,
+          "mse_uniform_model_rest_only": 3.3486609151699274e-05,
+          "sqnr_db_measured": 41.17496497524687,
+          "sqnr_db_uniform_model": 41.092216469951666
+        }
+      }
+    },
+    {
+      "op": "2:CONV_2D",
+      "shape": [
+        64,
+        1,
+        1,
+        64
+      ],
+      "n": 4096,
+      "channels": 64,
+      "absmax": 0.6015145182609558,
+      "channel_absmax_median": 0.37089888751506805,
+      "outlier_ratio_max_over_median": 1.6217749324915913,
+      "channel_absmax_top3": [
+        0.6015145182609558,
+        0.584132969379425,
+        0.5231209993362427
+      ],
+      "scale_per_tensor_4bit": 0.08593064546585083,
+      "scale_per_channel_4bit_median": 0.05298555535929544,
+      "rms": 0.15139396925718387,
+      "quant": {
+        "pt4": {
+          "bits": 4,
+          "per_channel": false,
+          "zero_fraction": 0.2255859375,
+          "mse_measured": 0.0006207814861142,
+          "mse_uniform_model": 0.0006153396525148125,
+          "mse_from_zeroed": 0.00013574119216346335,
+          "mse_from_rest": 0.0004850402939507367,
+          "mse_uniform_model_rest_only": 0.0006153396525148125,
+          "sqnr_db_measured": 15.672783947267225,
+          "sqnr_db_uniform_model": 15.711022490364371
+        },
+        "pc4": {
+          "bits": 4,
+          "per_channel": true,
+          "zero_fraction": 0.141357421875,
+          "mse_measured": 0.0002497311269201592,
+          "mse_uniform_model": 0.0002549951817570175,
+          "mse_from_zeroed": 3.6659256981625476e-05,
+          "mse_from_rest": 0.00021307186993853373,
+          "mse_uniform_model_rest_only": 0.00025342346575544627,
+          "sqnr_db_measured": 19.62744474040614,
+          "sqnr_db_uniform_model": 19.536851766505436
+        },
+        "pt8": {
+          "bits": 8,
+          "per_channel": false,
+          "zero_fraction": 0.01416015625,
+          "mse_measured": 1.89991222948346e-06,
+          "mse_uniform_model": 1.8694056031512061e-06,
+          "mse_from_zeroed": 2.6521020205014646e-08,
+          "mse_from_rest": 1.8733912092784453e-06,
+          "mse_uniform_model_rest_only": 1.8694056031512061e-06,
+          "sqnr_db_measured": 40.814836127300545,
+          "sqnr_db_uniform_model": 40.88513610919837
+        }
+      }
+    },
+    {
+      "op": "3:DEPTHWISE_CONV_2D",
+      "shape": [
+        1,
+        3,
+        3,
+        64
+      ],
+      "n": 576,
+      "channels": 64,
+      "absmax": 1.9545592069625854,
+      "channel_absmax_median": 1.0035131573677063,
+      "outlier_ratio_max_over_median": 1.9477165721369787,
+      "channel_absmax_top3": [
+        1.9545592069625854,
+        1.8217405080795288,
+        1.656887412071228
+      ],
+      "scale_per_tensor_4bit": 0.2792227438517979,
+      "scale_per_channel_4bit_median": 0.1433590224811009,
+      "rms": 0.5864887782978904,
+      "quant": {
+        "pt4": {
+          "bits": 4,
+          "per_channel": false,
+          "zero_fraction": 0.14756944444444445,
+          "mse_measured": 0.0066803317888621825,
+          "mse_uniform_model": 0.006497111723677229,
+          "mse_from_zeroed": 0.0011116529372010363,
+          "mse_from_rest": 0.005568678851661147,
+          "mse_uniform_model_rest_only": 0.00649711172367723,
+          "sqnr_db_measured": 17.11721380830085,
+          "sqnr_db_uniform_model": 17.237990788251643
+        },
+        "pc4": {
+          "bits": 4,
+          "per_channel": true,
+          "zero_fraction": 0.07291666666666667,
+          "mse_measured": 0.0018849367771065688,
+          "mse_uniform_model": 0.0020633803316005696,
+          "mse_from_zeroed": 0.00017675126906813363,
+          "mse_from_rest": 0.0017081855080384354,
+          "mse_uniform_model_rest_only": 0.002052129315871183,
+          "sqnr_db_measured": 22.612226256766867,
+          "sqnr_db_uniform_model": 22.219401272627476
+        },
+        "pt8": {
+          "bits": 8,
+          "per_channel": false,
+          "zero_fraction": 0.006944444444444444,
+          "mse_measured": 2.0560617912673123e-05,
+          "mse_uniform_model": 1.9738264893061204e-05,
+          "mse_from_zeroed": 2.7353263281523793e-07,
+          "mse_from_rest": 2.0287085279857887e-05,
+          "mse_uniform_model_rest_only": 1.9738264893061204e-05,
+          "sqnr_db_measured": 42.23483251273949,
+          "sqnr_db_uniform_model": 42.41210440708564
+        }
+      }
+    },
+    {
+      "op": "4:CONV_2D",
+      "shape": [
+        64,
+        1,
+        1,
+        64
+      ],
+      "n": 4096,
+      "channels": 64,
+      "absmax": 0.6120142340660095,
+      "channel_absmax_median": 0.40779300034046173,
+      "outlier_ratio_max_over_median": 1.5007963195911793,
+      "channel_absmax_top3": [
+        0.6120142340660095,
+        0.5587648749351501,
+        0.547907829284668
+      ],
+      "scale_per_tensor_4bit": 0.0874306048665728,
+      "scale_per_channel_4bit_median": 0.05825614290578025,
+      "rms": 0.17008544068809167,
+      "quant": {
+        "pt4": {
+          "bits": 4,
+          "per_channel": false,
+          "zero_fraction": 0.18701171875,
+          "mse_measured": 0.0006441346481838691,
+          "mse_uniform_model": 0.0006370092222778985,
+          "mse_from_zeroed": 0.00012125781478173906,
+          "mse_from_rest": 0.00052287683340213,
+          "mse_uniform_model_rest_only": 0.0006370092222778985,
+          "sqnr_db_measured": 16.523576185946126,
+          "sqnr_db_uniform_model": 16.57188559337687
+        },
+        "pc4": {
+          "bits": 4,
+          "per_channel": true,
+          "zero_fraction": 0.126953125,
+          "mse_measured": 0.0003129071841561527,
+          "mse_uniform_model": 0.000307899333473744,
+          "mse_from_zeroed": 4.4345411610154465e-05,
+          "mse_from_rest": 0.00026856177254599826,
+          "mse_uniform_model_rest_only": 0.00030569192020761423,
+          "sqnr_db_measured": 19.659187448067748,
+          "sqnr_db_uniform_model": 19.72925530437572
+        },
+        "pt8": {
+          "bits": 8,
+          "per_channel": false,
+          "zero_fraction": 0.01025390625,
+          "mse_measured": 1.912040419639353e-06,
+          "mse_uniform_model": 1.935237887756031e-06,
+          "mse_from_zeroed": 2.0936699018302675e-08,
+          "mse_from_rest": 1.8911037206210504e-06,
+          "mse_uniform_model_rest_only": 1.935237887756031e-06,
+          "sqnr_db_measured": 41.79837210381998,
+          "sqnr_db_uniform_model": 41.74599921221087
+        }
+      }
+    },
+    {
+      "op": "5:DEPTHWISE_CONV_2D",
+      "shape": [
+        1,
+        3,
+        3,
+        64
+      ],
+      "n": 576,
+      "channels": 64,
+      "absmax": 1.5696145296096802,
+      "channel_absmax_median": 0.831724226474762,
+      "outlier_ratio_max_over_median": 1.8871814474641961,
+      "channel_absmax_top3": [
+        1.5696145296096802,
+        1.5408623218536377,
+        1.410815715789795
+      ],
+      "scale_per_tensor_4bit": 0.22423064708709717,
+      "scale_per_channel_4bit_median": 0.11881774663925171,
+      "rms": 0.5045569729664421,
+      "quant": {
+        "pt4": {
+          "bits": 4,
+          "per_channel": false,
+          "zero_fraction": 0.14583333333333334,
+          "mse_measured": 0.004409681758433536,
+          "mse_uniform_model": 0.004189948591091526,
+          "mse_from_zeroed": 0.0006070850887109259,
+          "mse_from_rest": 0.003802596669722611,
+          "mse_uniform_model_rest_only": 0.004189948591091526,
+          "sqnr_db_measured": 17.614131769082878,
+          "sqnr_db_uniform_model": 17.836117305948804
+        },
+        "pc4": {
+          "bits": 4,
+          "per_channel": true,
+          "zero_fraction": 0.07465277777777778,
+          "mse_measured": 0.0011974344044478032,
+          "mse_uniform_model": 0.0014575901409484592,
+          "mse_from_zeroed": 9.753429003575071e-05,
+          "mse_from_rest": 0.0010999001144120525,
+          "mse_uniform_model_rest_only": 0.001463111668377621,
+          "sqnr_db_measured": 23.275686929312336,
+          "sqnr_db_uniform_model": 22.42185002885822
+        },
+        "pt8": {
+          "bits": 8,
+          "per_channel": false,
+          "zero_fraction": 0.005208333333333333,
+          "mse_measured": 1.286831588018048e-05,
+          "mse_uniform_model": 1.2729089277914612e-05,
+          "mse_from_zeroed": 7.639084207285347e-08,
+          "mse_from_rest": 1.2791925038107626e-05,
+          "mse_uniform_model_rest_only": 1.2729089277914615e-05,
+          "sqnr_db_measured": 42.96298711940619,
+          "sqnr_db_uniform_model": 43.0102309247828
+        }
+      }
+    },
+    {
+      "op": "6:CONV_2D",
+      "shape": [
+        64,
+        1,
+        1,
+        64
+      ],
+      "n": 4096,
+      "channels": 64,
+      "absmax": 0.6556044816970825,
+      "channel_absmax_median": 0.4347136914730072,
+      "outlier_ratio_max_over_median": 1.5081293609032582,
+      "channel_absmax_top3": [
+        0.6556044816970825,
+        0.6452049016952515,
+        0.6402934789657593
+      ],
+      "scale_per_tensor_4bit": 0.09365778309958321,
+      "scale_per_channel_4bit_median": 0.06210195592471532,
+      "rms": 0.1780702732913334,
+      "quant": {
+        "pt4": {
+          "bits": 4,
+          "per_channel": false,
+          "zero_fraction": 0.194580078125,
+          "mse_measured": 0.0007298249224487316,
+          "mse_uniform_model": 0.0007309816945940477,
+          "mse_from_zeroed": 0.0001424423997280329,
+          "mse_from_rest": 0.0005873825227206987,
+          "mse_uniform_model_rest_only": 0.0007309816945940477,
+          "sqnr_db_measured": 16.379641606581938,
+          "sqnr_db_uniform_model": 16.37276349063316
+        },
+        "pc4": {
+          "bits": 4,
+          "per_channel": true,
+          "zero_fraction": 0.1259765625,
+          "mse_measured": 0.00034295770300152956,
+          "mse_uniform_model": 0.00034935142552554804,
+          "mse_from_zeroed": 4.439517927217398e-05,
+          "mse_from_rest": 0.0002985625237293556,
+          "mse_uniform_model_rest_only": 0.00034690878967837596,
+          "sqnr_db_measured": 19.65942288683159,
+          "sqnr_db_uniform_model": 19.57920330729523
+        },
+        "pt8": {
+          "bits": 8,
+          "per_channel": false,
+          "zero_fraction": 0.013671875,
+          "mse_measured": 2.1512453187183577e-06,
+          "mse_uniform_model": 2.2207268296303776e-06,
+          "mse_from_zeroed": 2.6129918217512618e-08,
+          "mse_from_rest": 2.1251154005008452e-06,
+          "mse_uniform_model_rest_only": 2.2207268296303776e-06,
+          "sqnr_db_measured": 41.68492912181311,
+          "sqnr_db_uniform_model": 41.54687710946716
+        }
+      }
+    },
+    {
+      "op": "7:DEPTHWISE_CONV_2D",
+      "shape": [
+        1,
+        3,
+        3,
+        64
+      ],
+      "n": 576,
+      "channels": 64,
+      "absmax": 2.1012625694274902,
+      "channel_absmax_median": 0.7964270114898682,
+      "outlier_ratio_max_over_median": 2.638361757088925,
+      "channel_absmax_top3": [
+        2.1012625694274902,
+        1.7365342378616333,
+        1.705604076385498
+      ],
+      "scale_per_tensor_4bit": 0.30018036706107004,
+      "scale_per_channel_4bit_median": 0.11377528735569545,
+      "rms": 0.5922190906521144,
+      "quant": {
+        "pt4": {
+          "bits": 4,
+          "per_channel": false,
+          "zero_fraction": 0.1996527777777778,
+          "mse_measured": 0.007307295476389518,
+          "mse_uniform_model": 0.007509021064076562,
+          "mse_from_zeroed": 0.0015610673100450773,
+          "mse_from_rest": 0.005746228166344441,
+          "mse_uniform_model_rest_only": 0.007509021064076562,
+          "sqnr_db_measured": 16.81208137463926,
+          "sqnr_db_uniform_model": 16.693814836128368
+        },
+        "pc4": {
+          "bits": 4,
+          "per_channel": true,
+          "zero_fraction": 0.0798611111111111,
+          "mse_measured": 0.0012127486385392345,
+          "mse_uniform_model": 0.0014604216410201076,
+          "mse_from_zeroed": 9.958957885540646e-05,
+          "mse_from_rest": 0.0011131590596838283,
+          "mse_uniform_model_rest_only": 0.0014587299287376263,
+          "sqnr_db_measured": 24.611940104630957,
+          "sqnr_db_uniform_model": 23.804865463646653
+        },
+        "pt8": {
+          "bits": 8,
+          "per_channel": false,
+          "zero_fraction": 0.013888888888888888,
+          "mse_measured": 2.4504457043912754e-05,
+          "mse_uniform_model": 2.281245161756783e-05,
+          "mse_from_zeroed": 1.7260878231238259e-07,
+          "mse_from_rest": 2.4331848261600374e-05,
+          "mse_uniform_model_rest_only": 2.281245161756783e-05,
+          "sqnr_db_measured": 41.557197221116134,
+          "sqnr_db_uniform_model": 41.86792845496237
+        }
+      }
+    },
+    {
+      "op": "8:CONV_2D",
+      "shape": [
+        64,
+        1,
+        1,
+        64
+      ],
+      "n": 4096,
+      "channels": 64,
+      "absmax": 1.4185200929641724,
+      "channel_absmax_median": 0.9750563502311707,
+      "outlier_ratio_max_over_median": 1.4548083222347747,
+      "channel_absmax_top3": [
+        1.4185200929641724,
+        1.3064348697662354,
+        1.2893824577331543
+      ],
+      "scale_per_tensor_4bit": 0.20264572756631033,
+      "scale_per_channel_4bit_median": 0.1392937643187387,
+      "rms": 0.37720071248586595,
+      "quant": {
+        "pt4": {
+          "bits": 4,
+          "per_channel": false,
+          "zero_fraction": 0.219970703125,
+          "mse_measured": 0.0033924837275803132,
+          "mse_uniform_model": 0.003422107575073273,
+          "mse_from_zeroed": 0.0007167876806853123,
+          "mse_from_rest": 0.002675696046895001,
+          "mse_uniform_model_rest_only": 0.0034221075750732726,
+          "sqnr_db_measured": 16.22627235594382,
+          "sqnr_db_uniform_model": 16.188513511810616
+        },
+        "pc4": {
+          "bits": 4,
+          "per_channel": true,
+          "zero_fraction": 0.15625,
+          "mse_measured": 0.0017085961633022447,
+          "mse_uniform_model": 0.0017203335214045063,
+          "mse_from_zeroed": 0.00027089769488227713,
+          "mse_from_rest": 0.0014376984684199676,
+          "mse_uniform_model_rest_only": 0.0017128188559080158,
+          "sqnr_db_measured": 19.205055819817908,
+          "sqnr_db_uniform_model": 19.175323569616605
+        },
+        "pt8": {
+          "bits": 8,
+          "per_channel": false,
+          "zero_fraction": 0.012451171875,
+          "mse_measured": 1.0249824787665122e-05,
+          "mse_uniform_model": 1.0396383605839814e-05,
+          "mse_from_zeroed": 1.0963431231510353e-07,
+          "mse_from_rest": 1.0140190475350019e-05,
+          "mse_uniform_model_rest_only": 1.0396383605839814e-05,
+          "sqnr_db_measured": 41.42428567242299,
+          "sqnr_db_uniform_model": 41.36262713064462
+        }
+      }
+    },
+    {
+      "op": "11:FULLY_CONNECTED",
+      "shape": [
+        12,
+        64
+      ],
+      "n": 768,
+      "channels": 12,
+      "absmax": 1.1079226732254028,
+      "channel_absmax_median": 0.8123356401920319,
+      "outlier_ratio_max_over_median": 1.36387303278174,
+      "channel_absmax_top3": [
+        1.1079226732254028,
+        0.9719205498695374,
+        0.8676767349243164
+      ],
+      "scale_per_tensor_4bit": 0.158274667603629,
+      "scale_per_channel_4bit_median": 0.1160479485988617,
+      "rms": 0.42809307012933645,
+      "quant": {
+        "pt4": {
+          "bits": 4,
+          "per_channel": false,
+          "zero_fraction": 0.09635416666666667,
+          "mse_measured": 0.0021289377685907484,
+          "mse_uniform_model": 0.0020875725337532705,
+          "mse_from_zeroed": 0.00019841555557233997,
+          "mse_from_rest": 0.0019305222130184083,
+          "mse_uniform_model_rest_only": 0.0020875725337532705,
+          "sqnr_db_measured": 19.349134285928034,
+          "sqnr_db_uniform_model": 19.43434821069991
+        },
+        "pc4": {
+          "bits": 4,
+          "per_channel": true,
+          "zero_fraction": 0.06770833333333333,
+          "mse_measured": 0.0011220336672737045,
+          "mse_uniform_model": 0.001175046109821986,
+          "mse_from_zeroed": 6.590484969391648e-05,
+          "mse_from_rest": 0.0010561288175797879,
+          "mse_uniform_model_rest_only": 0.0011812666369631515,
+          "sqnr_db_measured": 22.13070506892551,
+          "sqnr_db_uniform_model": 21.93021486235208
+        },
+        "pt8": {
+          "bits": 8,
+          "per_channel": false,
+          "zero_fraction": 0.006510416666666667,
+          "mse_measured": 6.585346844029932e-06,
+          "mse_uniform_model": 6.342058041658518e-06,
+          "mse_from_zeroed": 3.431676758369535e-08,
+          "mse_from_rest": 6.5510300764462355e-06,
+          "mse_uniform_model_rest_only": 6.342058041658518e-06,
+          "sqnr_db_measured": 44.44497741484638,
+          "sqnr_db_uniform_model": 44.60846182953391
+        }
+      }
+    }
+  ],
+  "focus_layer": "6:CONV_2D",
+  "error_spectrum_focus": {
+    "W": {
+      "top_p_energy_fraction": {
+        "1": 0.07151854913665727,
+        "2": 0.13876591302295552,
+        "4": 0.2606083822629603,
+        "8": 0.4395353346470934,
+        "16": 0.6790986315679725,
+        "32": 0.9208631374098497
+      },
+      "singular_values_top8": [
+        3.0477598742562675,
+        2.9553507488188906,
+        2.876494920821366,
+        2.7478529377639025,
+        2.603127813139897,
+        2.515769063595596,
+        2.291021664744683,
+        2.2101836253635794
+      ]
+    },
+    "E_pt4": {
+      "top_p_energy_fraction": {
+        "1": 0.058480168490530796,
+        "2": 0.11013623309859279,
+        "4": 0.20777158337088475,
+        "8": 0.3751955611846664,
+        "16": 0.6217433870907981,
+        "32": 0.8884247330674873
+      },
+      "singular_values_top8": [
+        0.4181129572725139,
+        0.3929614767221009,
+        0.383470098951586,
+        0.3805498328987833,
+        0.3671128367842937,
+        0.3620931433949512,
+        0.3477947659996223,
+        0.33711503409033733
+      ]
+    },
+    "E_pt8": {
+      "top_p_energy_fraction": {
+        "1": 0.05988982077184958,
+        "2": 0.11503933656825312,
+        "4": 0.21479054054077346,
+        "8": 0.37804402464907627,
+        "16": 0.6237438185513203,
+        "32": 0.9012737956030362
+      },
+      "singular_values_top8": [
+        0.02297213976033635,
+        0.0220442737227676,
+        0.021562307902325054,
+        0.020347596764012665,
+        0.019704668971201808,
+        0.01943119133771093,
+        0.018537427835318174,
+        0.018139095985308162
+      ]
+    },
+    "iid_gaussian_baseline": {
+      "top_p_energy_fraction": {
+        "1": 0.05957992216666248,
+        "2": 0.11458151216673182,
+        "4": 0.21312984078729272,
+        "8": 0.37991658864512157,
+        "16": 0.627316690981007,
+        "32": 0.8945665831808549
+      }
+    }
+  },
+  "float_accuracy": 0.9216768916155419,
+  "ablation": {
+    "focus_pt4": {
+      "accuracy": 0.8278118609406953,
+      "mcnemar_vs_float": {
+        "only_a_correct": 33,
+        "only_b_correct": 492,
+        "p_value": 4.685891583898818e-106,
+        "accuracy_diff": -0.09386503067484664
+      }
+    },
+    "focus_pc4": {
+      "accuracy": 0.9231083844580777,
+      "mcnemar_vs_float": {
+        "only_a_correct": 64,
+        "only_b_correct": 57,
+        "p_value": 0.5856255178555001,
+        "accuracy_diff": 0.001431492842535853
+      }
+    },
+    "focus_pt4_keep_top1_float": {
+      "accuracy": 0.8648261758691207,
+      "mcnemar_vs_focus_pt4": {
+        "only_a_correct": 196,
+        "only_b_correct": 15,
+        "p_value": 2.2099340585972999e-41,
+        "accuracy_diff": 0.03701431492842544
+      }
+    },
+    "focus_pt4_keep_top2_float": {
+      "accuracy": 0.87280163599182,
+      "mcnemar_vs_focus_pt4": {
+        "only_a_correct": 241,
+        "only_b_correct": 21,
+        "p_value": 1.5446410211405622e-48,
+        "accuracy_diff": 0.04498977505112478
+      }
+    },
+    "focus_pt4_keep_top4_float": {
+      "accuracy": 0.896319018404908,
+      "mcnemar_vs_focus_pt4": {
+        "only_a_correct": 360,
+        "only_b_correct": 25,
+        "p_value": 3.4323631410302e-77,
+        "accuracy_diff": 0.06850715746421276
+      }
+    },
+    "focus_pt4_keep_top8_float": {
+      "accuracy": 0.9167689161554192,
+      "mcnemar_vs_focus_pt4": {
+        "only_a_correct": 459,
+        "only_b_correct": 24,
+        "p_value": 1.979191117940377e-105,
+        "accuracy_diff": 0.08895705521472397
+      }
+    },
+    "focus_pt4_clip_to_2th_channel": {
+      "accuracy": 0.8674846625766871,
+      "mcnemar_vs_focus_pt4": {
+        "only_a_correct": 205,
+        "only_b_correct": 11,
+        "p_value": 1.852115458731733e-47,
+        "accuracy_diff": 0.03967280163599185
+      }
+    },
+    "focus_pt4_clip_to_3th_channel": {
+      "accuracy": 0.8760736196319019,
+      "mcnemar_vs_focus_pt4": {
+        "only_a_correct": 253,
+        "only_b_correct": 17,
+        "p_value": 4.08922149263351e-55,
+        "accuracy_diff": 0.048261758691206635
+      }
+    },
+    "focus_pt4_clip_to_5th_channel": {
+      "accuracy": 0.9030674846625767,
+      "mcnemar_vs_focus_pt4": {
+        "only_a_correct": 392,
+        "only_b_correct": 24,
+        "p_value": 7.441317350211289e-87,
+        "accuracy_diff": 0.07525562372188144
+      }
+    },
+    "focus_pt4_clip_to_9th_channel": {
+      "accuracy": 0.9165644171779141,
+      "mcnemar_vs_focus_pt4": {
+        "only_a_correct": 459,
+        "only_b_correct": 25,
+        "p_value": 1.92024897333888e-104,
+        "accuracy_diff": 0.0887525562372189
+      }
+    },
+    "focus_zero_small_only": {
+      "accuracy": 0.8973415132924335,
+      "mcnemar_vs_focus_pt4": {
+        "only_a_correct": 372,
+        "only_b_correct": 32,
+        "p_value": 1.4459456007354072e-74,
+        "accuracy_diff": 0.06952965235173825
+      }
+    },
+    "focus_grid_large_only": {
+      "accuracy": 0.8701431492842536,
+      "mcnemar_vs_focus_pt4": {
+        "only_a_correct": 220,
+        "only_b_correct": 13,
+        "p_value": 1.0483893925059404e-49,
+        "accuracy_diff": 0.04233128834355837
+      }
+    },
+    "all_pt4": {
+      "accuracy": 0.5736196319018405,
+      "mcnemar_vs_float": {
+        "only_a_correct": 25,
+        "only_b_correct": 1727,
+        "p_value": 0.0,
+        "accuracy_diff": -0.3480572597137014
+      }
+    },
+    "all_pc4": {
+      "accuracy": 0.9106339468302659,
+      "mcnemar_vs_float": {
+        "only_a_correct": 100,
+        "only_b_correct": 154,
+        "p_value": 0.0008478992047401534,
+        "accuracy_diff": -0.01104294478527601
+      }
+    },
+    "all_pt4_keep_top1_float": {
+      "accuracy": 0.6171779141104294,
+      "mcnemar_vs_all_pt4": {
+        "only_a_correct": 551,
+        "only_b_correct": 338,
+        "p_value": 9.066790174462966e-13,
+        "accuracy_diff": 0.04355828220858893
+      }
+    },
+    "all_pt4_keep_top2_float": {
+      "accuracy": 0.665439672801636,
+      "mcnemar_vs_all_pt4": {
+        "only_a_correct": 762,
+        "only_b_correct": 313,
+        "p_value": 9.09771197732685e-44,
+        "accuracy_diff": 0.09182004089979545
+      }
+    },
+    "all_pt4_keep_top4_float": {
+      "accuracy": 0.730879345603272,
+      "mcnemar_vs_all_pt4": {
+        "only_a_correct": 1007,
+        "only_b_correct": 238,
+        "p_value": 8.013523178742503e-113,
+        "accuracy_diff": 0.15725971370143144
+      }
+    },
+    "all_pt4_keep_top8_float": {
+      "accuracy": 0.8903885480572598,
+      "mcnemar_vs_all_pt4": {
+        "only_a_correct": 1618,
+        "only_b_correct": 69,
+        "p_value": 0.0,
+        "accuracy_diff": 0.31676891615541924
+      }
+    },
+    "all_pt4_clip_to_2th_channel": {
+      "accuracy": 0.6347648261758692,
+      "mcnemar_vs_all_pt4": {
+        "only_a_correct": 600,
+        "only_b_correct": 301,
+        "p_value": 1.2307759560255806e-23,
+        "accuracy_diff": 0.06114519427402865
+      }
+    },
+    "all_pt4_clip_to_3th_channel": {
+      "accuracy": 0.6754601226993865,
+      "mcnemar_vs_all_pt4": {
+        "only_a_correct": 785,
+        "only_b_correct": 287,
+        "p_value": 5.21242305863018e-54,
+        "accuracy_diff": 0.10184049079754598
+      }
+    },
+    "all_pt4_clip_to_5th_channel": {
+      "accuracy": 0.7580777096114519,
+      "mcnemar_vs_all_pt4": {
+        "only_a_correct": 1078,
+        "only_b_correct": 176,
+        "p_value": 1.946616464867069e-158,
+        "accuracy_diff": 0.18445807770961142
+      }
+    },
+    "all_zero_small_only": {
+      "accuracy": 0.8507157464212679,
+      "mcnemar_vs_all_pt4": {
+        "only_a_correct": 1398,
+        "only_b_correct": 43,
+        "p_value": 0.0,
+        "accuracy_diff": 0.2770961145194274
+      }
+    },
+    "all_grid_large_only": {
+      "accuracy": 0.716359918200409,
+      "mcnemar_vs_all_pt4": {
+        "only_a_correct": 761,
+        "only_b_correct": 63,
+        "p_value": 4.3602162728258203e-153,
+        "accuracy_diff": 0.1427402862985685
+      }
+    }
+  },
+  "activation": [
+    {
+      "op": "0:CONV_2D",
+      "input_channels": 1,
+      "input_rms_max_over_median": 1.0,
+      "input_rms_top3_over_median": [
+        1.0
+      ],
+      "weight_sqnr_db": 12.760824323190349,
+      "activation_weighted_sqnr_db": 12.760824323190349,
+      "layer_output_sqnr_db": 7.054087724760639,
+      "logits_sqnr_db": 14.970579362317444
+    },
+    {
+      "op": "1:DEPTHWISE_CONV_2D",
+      "input_channels": 64,
+      "input_rms_max_over_median": 1.652202291862118,
+      "input_rms_top3_over_median": [
+        1.652202291862118,
+        1.6404783745927003,
+        1.6020277480861693
+      ],
+      "weight_sqnr_db": 15.844072880439468,
+      "activation_weighted_sqnr_db": 14.998044764638154,
+      "layer_output_sqnr_db": 14.846349820868063,
+      "logits_sqnr_db": 19.98146170773977
+    },
+    {
+      "op": "2:CONV_2D",
+      "input_channels": 64,
+      "input_rms_max_over_median": 1.7132784174427722,
+      "input_rms_top3_over_median": [
+        1.7132784174427722,
+        1.5513168732586031,
+        1.4654676665086457
+      ],
+      "weight_sqnr_db": 15.672783947267225,
+      "activation_weighted_sqnr_db": 15.784478883602882,
+      "layer_output_sqnr_db": 17.739738390331425,
+      "logits_sqnr_db": 17.836654522582357
+    },
+    {
+      "op": "3:DEPTHWISE_CONV_2D",
+      "input_channels": 64,
+      "input_rms_max_over_median": 1.3817192176577284,
+      "input_rms_top3_over_median": [
+        1.3817192176577284,
+        1.3670833676484888,
+        1.3606951229388138
+      ],
+      "weight_sqnr_db": 17.11721359428989,
+      "activation_weighted_sqnr_db": 16.615718364791093,
+      "layer_output_sqnr_db": 17.085312262907625,
+      "logits_sqnr_db": 21.420577551380635
+    },
+    {
+      "op": "4:CONV_2D",
+      "input_channels": 64,
+      "input_rms_max_over_median": 1.302320602231871,
+      "input_rms_top3_over_median": [
+        1.302320602231871,
+        1.2854814115439233,
+        1.2370870930140339
+      ],
+      "weight_sqnr_db": 16.523576215115668,
+      "activation_weighted_sqnr_db": 16.60002863682162,
+      "layer_output_sqnr_db": 16.386025244425156,
+      "logits_sqnr_db": 13.656505356656778
+    },
+    {
+      "op": "5:DEPTHWISE_CONV_2D",
+      "input_channels": 64,
+      "input_rms_max_over_median": 1.373564902942402,
+      "input_rms_top3_over_median": [
+        1.373564902942402,
+        1.2995746446909073,
+        1.2961889387811363
+      ],
+      "weight_sqnr_db": 17.614131769082878,
+      "activation_weighted_sqnr_db": 17.321714829197795,
+      "layer_output_sqnr_db": 17.37560439855105,
+      "logits_sqnr_db": 18.0492549291673
+    },
+    {
+      "op": "6:CONV_2D",
+      "input_channels": 64,
+      "input_rms_max_over_median": 1.4054330029224926,
+      "input_rms_top3_over_median": [
+        1.4054330029224926,
+        1.4002968551800756,
+        1.208688542837554
+      ],
+      "weight_sqnr_db": 16.379641561182535,
+      "activation_weighted_sqnr_db": 16.47820937444148,
+      "layer_output_sqnr_db": 15.312796618007944,
+      "logits_sqnr_db": 8.972745429392448
+    },
+    {
+      "op": "7:DEPTHWISE_CONV_2D",
+      "input_channels": 64,
+      "input_rms_max_over_median": 1.3886218842996119,
+      "input_rms_top3_over_median": [
+        1.3886218842996119,
+        1.313235880028829,
+        1.3042783449002477
+      ],
+      "weight_sqnr_db": 16.81208116567092,
+      "activation_weighted_sqnr_db": 15.070690534782411,
+      "layer_output_sqnr_db": 18.049863445488793,
+      "logits_sqnr_db": 23.050744959046902
+    },
+    {
+      "op": "8:CONV_2D",
+      "input_channels": 64,
+      "input_rms_max_over_median": 1.661616142918485,
+      "input_rms_top3_over_median": [
+        1.661616142918485,
+        1.5234753376289372,
+        1.4693592825564044
+      ],
+      "weight_sqnr_db": 16.226272284002643,
+      "activation_weighted_sqnr_db": 16.616186171003633,
+      "layer_output_sqnr_db": 16.303819256555872,
+      "logits_sqnr_db": 22.190487664684426
+    },
+    {
+      "op": "11:FULLY_CONNECTED",
+      "input_channels": 64,
+      "input_rms_max_over_median": 1.4122729895279573,
+      "input_rms_top3_over_median": [
+        1.4122729895279573,
+        1.3373316062277651,
+        1.3153116523797845
+      ],
+      "weight_sqnr_db": 19.34913436944543,
+      "activation_weighted_sqnr_db": 19.49738072552712,
+      "layer_output_sqnr_db": 28.6128328900765,
+      "logits_sqnr_db": 28.912831126575668
+    }
+  ],
+  "keep_top_float_cost": {
+    "1": 0.017986918604651164,
+    "2": 0.03597383720930233,
+    "4": 0.07194767441860465,
+    "8": 0.1438953488372093
+  }
+}

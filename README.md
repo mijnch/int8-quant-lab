@@ -19,6 +19,7 @@ MLPerf Tiny의 키워드 인식(KWS) 레퍼런스 모델(DS-CNN)을 대상으로
 | T2·T3 정수 추론 재현 | 테스트 4,890개 × 출력 12개, 모델 2개 × 런타임 3개 **전부 불일치 0** · 무작위 단일 연산 모델 500개 × 런타임 3개 전부 일치 (Linux 측정, Windows는 CI로 확인) | [§3](results/results.md#3-t2t3--numpy-정수-커널-대-litert-세-실행-경로-비트-단위) |
 | FP32 → INT8 | 정확도 92.17% → 92.33%, 파일 99.4 KB → 48.5 KB. 차이는 **우연과 구별되지 않음**(McNemar p=0.40) | [§4](results/results.md#4-fp32-대-int8--정확도크기) |
 | 4비트 가중치(시뮬레이션) | 채널별 91.1% 대 **텐서별 대칭 57.4%** · 텐서별 비대칭 80.2%. 1×1 합성곱 한 층의 영향이 가장 큼 | [§5 C·D](results/results.md#5-설계-변수-실험) |
+| 왜 무너졌나 (분석) | 오차 크기는 Δ²/12 모델 그대로(0.2 dB 안). 원인은 큰 가중치가 거친 격자에 오르는 것(가장 큼) + 작은 가중치의 10~39%가 0이 되는 것. 6번 층이 민감한 이유는 가중치가 아니라 **뒤쪽 망을 지나며 오차가 증폭**되기 때문(logits SQNR 9.0 dB, 다른 층 13.7~28.9) | [docs/analysis_4bit.md](docs/analysis_4bit.md) |
 
 8비트에서는 채널별/텐서별, 대칭/비대칭, 보정 샘플 10개 이상 여부 모두 정확도 차이가 통계적으로
 구별되지 않았습니다. 차이는 보정 샘플 1개(평균 91.2%)와 4비트에서 드러났습니다.
@@ -80,7 +81,8 @@ McNemar 정확 검정을 붙였고, 비교가 많아 p < 0.002(본페로니)만 
 
 ```bash
 pip install -r requirements.txt
-pytest                      # 29개: 고정소수점 단위 검증, T1 재현, 세 런타임 비트 일치
+pytest                      # 33개: 고정소수점 단위 검증, T1 재현, 세 런타임 비트 일치, 가중치 바꿔 끼우기
+python scripts/analyze_4bit.py   # 4비트 붕괴 분석(docs/analysis_4bit.md의 수치·그림, 약 1분)
 ```
 
 전체 실험(Python 3.10~3.13, 약 2.5 GB를 내려받고 tfds 변환 후 디스크 약 11 GB 사용):
@@ -108,16 +110,18 @@ src/qlab/
   runtime.py     LiteRT 세 실행 경로
   synth.py       검증용 단일 연산 모델 생성
   t1.py          T1 대조
-  simulate.py    가중치 fake quantization
+  simulate.py    가중치 fake quantization, 가중치 바꿔 끼우기(절제 실험)
   stats.py       McNemar 정확 검정
   data.py        Speech Commands → MFCC          (TensorFlow 필요)
   convert.py     Keras → .tflite                 (TensorFlow 필요)
 scripts/         prepare_data · verify_t1 · verify_bitexact · evaluate · experiments · report
                  probe_rounding (이 컴퓨터의 런타임이 어떤 반올림 규칙을 쓰는지 표로 — TF 불필요)
+                 analyze_4bit (4비트 붕괴 분석: 가중치 통계·잡음 모델·절제·오차 전파 — TF 불필요)
 tests/           pytest (TensorFlow 없이)
 models/          MLPerf 배포 모델·보정 인덱스, TF 2.21 변환 결과(int8·보정용·float32)
 results/         results.md(자동 생성), *.json, figures/
 docs/notes.md    막힌 곳과 알아낸 것, 원문 위치
+docs/analysis_4bit.md   4비트 텐서별 대칭이 무너진 이유 — 유도, 측정, 절제 실험
 ```
 
 ## 만든 방식
@@ -135,7 +139,8 @@ pdf-ocr-korean-textbook에서는 ONNX Runtime의 동적 int8 양자화(`quantize
 - 정확도·지연 측정과 망 전체 대조는 Linux x86-64(AVX-512)에서 했습니다. Windows x86-64는 CI(규칙 탐침 +
   테스트)로만 확인했습니다. ARM(NEON 원본, 점곱 3×3 커널 등)과 macOS는 확인하지 않았습니다.
 - 다음: 마이크로컨트롤러 실측(TFLite Micro, CMSIS-NN의 재양자화 대조), 양자화 인식 학습(QAT),
-  층별 민감도에 따른 혼합 정밀도.
+  층별 민감도에 따른 혼합 정밀도. 6번 층의 오차만 뒤쪽 망에서 증폭되는 이유(어느 방향과 맞물리는지)는
+  [분석 노트](docs/analysis_4bit.md)에서 열린 질문으로 남겼습니다.
 
 ## 출처·라이선스
 
@@ -165,6 +170,13 @@ Speech Commands v2).
   at 8 bits, per-channel vs per-tensor, symmetric vs asymmetric and ≥10 calibration samples make no
   detectable difference, while 4-bit per-tensor symmetric weights collapse to 57.4% (simulation),
   with a single 1×1 conv layer contributing the most.
+- **Why 4-bit collapsed ([docs/analysis_4bit.md](docs/analysis_4bit.md)):** the weight error is exactly
+  what the uniform Δ²/12 model predicts (within 0.2 dB), so the cause is not its size but its kind —
+  large weights landing on a grid 1.4–2.7× coarser than per-channel (the main factor) plus 10–39% of
+  small weights rounding to zero; no single outlier channel is responsible (8 of 64 channels must stay
+  in float to recover). The sensitive layer is not special in its weights or its own output error; its
+  error is amplified on the way to the logits (logits SQNR 9.0 dB vs 13.7–28.9 dB for other layers).
+  The 4-bit error matrix has the spectrum of white noise, so a low-rank correction cannot capture it.
 - **Findings about the MLPerf artifacts:** the file named `*_float32.tflite` is actually dynamic-range
   quantized; the distributed `.tflite` files and the SavedModel appear to come from different training runs.
 
