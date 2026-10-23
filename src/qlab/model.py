@@ -3,6 +3,7 @@ kernels.py로 망 전체를 정수 산술로 실행한다.
 
 flatbuffer 스키마는 ai-edge-litert에 포함된 `schema_py_generated`를 쓴다.
 """
+from pathlib import Path
 import sys
 from dataclasses import dataclass, field
 
@@ -69,7 +70,7 @@ if sys.platform == "win32":
 class Model:
     def __init__(self, path_or_bytes):
         buf = path_or_bytes if isinstance(path_or_bytes, (bytes, bytearray)) \
-            else open(path_or_bytes, "rb").read()
+            else Path(path_or_bytes).read_bytes()
         self.size_bytes = len(buf)
         m = schema.ModelT.InitFromPackedBuf(buf, 0)
         if len(m.subgraphs) != 1:

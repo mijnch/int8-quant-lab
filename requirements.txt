@@ -2,4 +2,5 @@
 # 커널의 반올림 방식은 런타임 버전마다 다를 수 있어 LiteRT는 버전을 고정한다.
 numpy>=2.1
 ai-edge-litert==2.2.0
+flatbuffers>=24    # synth.py·simulate.py 가 직접 쓴다(ai-edge-litert 도 끌어오지만 직접 쓰는 것은 적어 둔다)
 pytest>=8

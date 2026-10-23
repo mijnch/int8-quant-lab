@@ -29,13 +29,6 @@ def to_float(model):
     return tf.lite.TFLiteConverter.from_keras_model(model).convert()
 
 
-def to_dynamic_range(model):
-    """레퍼런스 `kws_ref_model_float32.tflite`와 같은 설정: Optimize.DEFAULT, 보정 데이터 없음."""
-    c = tf.lite.TFLiteConverter.from_keras_model(model)
-    c.optimizations = [tf.lite.Optimize.DEFAULT]
-    return c.convert()
-
-
 def to_int8(model, calibration, *, per_channel=True, calibrate_only=False):
     """calibration: float32 [N,49,10,1]. per_channel=False는 비공개 옵션
     `_experimental_disable_per_channel`을 쓴다(버전이 바뀌면 사라질 수 있음).

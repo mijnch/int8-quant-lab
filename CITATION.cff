@@ -1,0 +1,24 @@
+# GitHub 가 이 파일을 읽어 저장소 페이지에 "Cite this repository" 를 띄운다 (Citation File Format 1.2.0).
+cff-version: 1.2.0
+message: "이 저장소를 인용할 때는 아래 정보를 써 주세요. / If you use this software, please cite it as below."
+type: software
+title: "int8-quant-lab: INT8 양자화를 라이브러리 출력과 비트 단위로 맞춰 보기"
+authors:
+  - family-names: Choi
+    given-names: Minjoon
+    email: mijnch@gmail.com
+repository-code: "https://github.com/mijnch/int8-quant-lab"
+url: "https://github.com/mijnch/int8-quant-lab"
+license: MIT
+keywords:
+  - quantization
+  - int8
+  - tflite
+  - litert
+  - xnnpack
+  - mlperf-tiny
+  - keyword-spotting
+  - model-compression
+  - on-device
+  - numpy
+abstract: "TFLite/LiteRT int8 정적 양자화를 NumPy로 다시 구현해, 변환기가 정한 scale·zero-point·int8 값과 세 실행 경로(참조·최적화·XNNPACK)의 정수 출력을 비트 단위로 맞춘 실험 (MLPerf Tiny KWS, DS-CNN). 경로·플랫폼별 반올림 규칙 6가지를 원문에서 찾아 맞추고, 4비트 붕괴의 원인을 분석한다."

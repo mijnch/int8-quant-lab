@@ -7,7 +7,7 @@
 
 주의: tensorflow-datasets의 기본 주소(download.tensorflow.org)가 막힌 네트워크에서는
 --gcs-mirror를 주면 같은 파일을 storage.googleapis.com에서 받는다(sha256은 tfds가 등록한 값과
-따로 대조할 것 — README 참고).
+따로 대조할 것 — docs/notes.md §1 참고).
 """
 import argparse
 import os
