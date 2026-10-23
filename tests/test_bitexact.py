@@ -47,3 +47,14 @@ def test_random_single_op_models(kind):
         for mode in RUNTIMES:
             lib = R.invoke(R.make(blob, mode, batch=len(x)), x)
             assert np.array_equal(m.run_op(m.ops[0], x, policy=mode), lib), mode
+
+
+def test_model_path_with_non_ascii_directory(tmp_path):
+    """한글 폴더 안의 모델도 경로로 열린다 — LiteRT 의 C++ 로더에 경로를 넘기면 Windows 에서 실패했다."""
+    d = tmp_path / "한글 폴더"
+    d.mkdir()
+    p = d / "모델.tflite"
+    blob = (MODELS / "kws_tf221_int8.tflite").read_bytes()
+    p.write_bytes(blob)
+    x = np.zeros(R.make(blob, "reference").get_input_details()[0]["shape"], dtype=np.int8)
+    assert np.array_equal(R.invoke(R.make(p, "reference"), x), R.invoke(R.make(blob, "reference"), x))

@@ -6,6 +6,13 @@ on:
   pull_request:
   workflow_dispatch:
 
+permissions:
+  contents: read        # 저장소를 읽기만 한다 — GITHUB_TOKEN 을 쓰기 권한 없이 발급받는다
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}   # 같은 브랜치에 연달아 푸시하면 앞 실행을 취소한다
+  cancel-in-progress: true
+
 jobs:
   bitexact:
     # numpy 정수 커널이 LiteRT 세 실행 경로(참조·최적화·XNNPACK)와 비트 단위로 같은지,
@@ -15,6 +22,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
+    timeout-minutes: 20   # 실제 실행은 1~2분. 러너가 멈춰도 기본값(6시간)까지 돌지 않게 한다
     env:
       PYTHONUTF8: '1'
     steps:
@@ -23,6 +31,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.13'
+          cache: pip
+          cache-dependency-path: requirements.txt
 
       - name: 의존성 설치
         run: python -m pip install -r requirements.txt

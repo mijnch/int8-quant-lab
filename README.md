@@ -1,6 +1,8 @@
 # int8-quant-lab — INT8 양자화, 라이브러리 출력과 비트 단위로 맞춰 보기
 
 [![tests](https://github.com/mijnch/int8-quant-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/mijnch/int8-quant-lab/actions/workflows/ci.yml)
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+![python](https://img.shields.io/badge/python-3.13-blue.svg)
 
 MLPerf Tiny의 키워드 인식(KWS) 레퍼런스 모델(DS-CNN)을 대상으로, TensorFlow Lite(LiteRT)의
 **INT8 양자화 규칙과 정수 추론 산술을 numpy로 다시 구현해 라이브러리 출력과 비트 단위로 대조**하고,
@@ -19,7 +21,7 @@ MLPerf Tiny의 키워드 인식(KWS) 레퍼런스 모델(DS-CNN)을 대상으로
 | T2·T3 정수 추론 재현 | 테스트 4,890개 × 출력 12개, 모델 2개 × 런타임 3개 **전부 불일치 0** · 무작위 단일 연산 모델 500개 × 런타임 3개 전부 일치 (Linux 측정, Windows는 CI로 확인) | [§3](results/results.md#3-t2t3--numpy-정수-커널-대-litert-세-실행-경로-비트-단위) |
 | FP32 → INT8 | 정확도 92.17% → 92.33%, 파일 99.4 KB → 48.5 KB. 차이는 **우연과 구별되지 않음**(McNemar p=0.40) | [§4](results/results.md#4-fp32-대-int8--정확도크기) |
 | 4비트 가중치(시뮬레이션) | 채널별 91.1% 대 **텐서별 대칭 57.4%** · 텐서별 비대칭 80.2%. 1×1 합성곱 한 층의 영향이 가장 큼 | [§5 C·D](results/results.md#5-설계-변수-실험) |
-| 왜 무너졌나 (분석) | 오차 크기는 Δ²/12 모델 그대로(0.2 dB 안). 원인은 큰 가중치가 거친 격자에 오르는 것(가장 큼) + 작은 가중치의 10~39%가 0이 되는 것. 6번 층이 민감한 이유는 가중치가 아니라 **뒤쪽 망을 지나며 오차가 증폭**되기 때문(logits SQNR 9.0 dB, 다른 층 13.7~28.9) | [docs/analysis_4bit.md](docs/analysis_4bit.md) |
+| 왜 무너졌나 (분석) | 오차 크기는 Δ²/12 모델 그대로(4비트 텐서별 0.23 dB 안). 원인은 큰 가중치가 거친 격자에 오르는 것(가장 큼) + 작은 가중치의 10~39%가 0이 되는 것. 6번 층이 민감한 이유는 가중치가 아니라 **뒤쪽 망을 지나며 오차가 증폭**되기 때문(logits SQNR 9.0 dB, 다른 층 13.7~28.9) | [docs/analysis_4bit.md](docs/analysis_4bit.md) |
 
 8비트에서는 채널별/텐서별, 대칭/비대칭, 보정 샘플 10개 이상 여부 모두 정확도 차이가 통계적으로
 구별되지 않았습니다. 차이는 보정 샘플 1개(평균 91.2%)와 4비트에서 드러났습니다.
@@ -81,8 +83,7 @@ McNemar 정확 검정을 붙였고, 비교가 많아 p < 0.002(본페로니)만 
 
 ```bash
 pip install -r requirements.txt
-pytest                      # 33개: 고정소수점 단위 검증, T1 재현, 세 런타임 비트 일치, 가중치 바꿔 끼우기
-python scripts/analyze_4bit.py   # 4비트 붕괴 분석(docs/analysis_4bit.md의 수치·그림, 약 1분)
+pytest                      # 34개: 고정소수점 단위 검증, T1 재현, 세 런타임 비트 일치, 가중치 바꿔 끼우기
 ```
 
 전체 실험(Python 3.10~3.13, 약 2.5 GB를 내려받고 tfds 변환 후 디스크 약 11 GB 사용):
@@ -95,7 +96,8 @@ python scripts/prepare_data.py --tfds-dir ~/tfds --mlperf-dir tiny   # MFCC + �
 python scripts/verify_t1.py --saved-model $SM      # T1 (models/kws_tf221_*.tflite를 다시 만듦 — 바이트 동일)
 python scripts/verify_bitexact.py                  # T2·T3
 python scripts/evaluate.py --saved-model $SM       # 정확도·크기·지연
-python scripts/experiments.py --saved-model $SM    # 설계 변수 실험 (변환 약 30회)
+python scripts/experiments.py --saved-model $SM    # 설계 변수 실험 (int8 변환 22회, 기본 --seeds 5)
+python scripts/analyze_4bit.py                     # 4비트 붕괴 분석(docs/analysis_4bit.md, 약 1분 — TF 불필요, 위의 data/features.npz 필요)
 python scripts/report.py                           # results/results.md, 그림
 ```
 
@@ -116,7 +118,7 @@ src/qlab/
   convert.py     Keras → .tflite                 (TensorFlow 필요)
 scripts/         prepare_data · verify_t1 · verify_bitexact · evaluate · experiments · report
                  probe_rounding (이 컴퓨터의 런타임이 어떤 반올림 규칙을 쓰는지 표로 — TF 불필요)
-                 analyze_4bit (4비트 붕괴 분석: 가중치 통계·잡음 모델·절제·오차 전파 — TF 불필요)
+                 analyze_4bit (4비트 붕괴 분석: 가중치 통계·잡음 모델·절제·오차 전파 — TF 불필요, data/features.npz 필요)
 tests/           pytest (TensorFlow 없이)
 models/          MLPerf 배포 모델·보정 인덱스, TF 2.21 변환 결과(int8·보정용·float32)
 results/         results.md(자동 생성), *.json, figures/
@@ -171,7 +173,7 @@ Speech Commands v2).
   detectable difference, while 4-bit per-tensor symmetric weights collapse to 57.4% (simulation),
   with a single 1×1 conv layer contributing the most.
 - **Why 4-bit collapsed ([docs/analysis_4bit.md](docs/analysis_4bit.md)):** the weight error is exactly
-  what the uniform Δ²/12 model predicts (within 0.2 dB), so the cause is not its size but its kind —
+  what the uniform Δ²/12 model predicts (within 0.23 dB for 4-bit per-tensor), so the cause is not its size but its kind —
   large weights landing on a grid 1.4–2.7× coarser than per-channel (the main factor) plus 10–39% of
   small weights rounding to zero; no single outlier channel is responsible (8 of 64 channels must stay
   in float to recover). The sensitive layer is not special in its weights or its own output error; its

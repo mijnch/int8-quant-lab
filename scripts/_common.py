@@ -15,6 +15,20 @@ REF_INT8 = MODELS / "kws_ref_model.tflite"
 REF_FP32 = MODELS / "kws_ref_model_float32.tflite"
 
 
+def environment():
+    """측정 결과와 함께 남길 실행 환경(라이브러리 판). 보고서는 이 기록을 그대로 옮긴다."""
+    import importlib.metadata as md
+    import platform
+
+    def ver(name):
+        try:
+            return md.version(name)
+        except md.PackageNotFoundError:
+            return None
+    return {"python": platform.python_version(), "platform": platform.platform(),
+            **{n: ver(n) for n in ("tensorflow", "tf-keras", "ai-edge-litert", "numpy")}}
+
+
 def save_json(name, obj):
     RESULTS.mkdir(exist_ok=True)
     path = RESULTS / name

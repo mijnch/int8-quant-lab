@@ -4,6 +4,8 @@
 - optimized : BUILTIN_WITHOUT_DEFAULT_DELEGATES — 최적화 커널, XNNPACK 끔
 - xnnpack   : BUILTIN — 기본 설정. XNNPACK 위임(delegate)이 지원 연산을 가져간다
 """
+from pathlib import Path
+
 import numpy as np
 from ai_edge_litert.interpreter import Interpreter, OpResolverType
 
@@ -21,10 +23,10 @@ def make(model, mode, *, batch=None, preserve=False, split_delegate=False, num_t
               experimental_preserve_all_tensors=preserve)
     if split_delegate:
         kw["experimental_disable_delegate_node_fusion"] = True
-    if isinstance(model, (bytes, bytearray)):
-        it = Interpreter(model_content=bytes(model), **kw)
-    else:
-        it = Interpreter(model_path=str(model), **kw)
+    # 경로를 넘기지 않고 늘 바이트로 넘긴다 — model_path 는 C++ 로더(fopen)로 가서, Windows 에서
+    # ANSI 코드 페이지로 표현되지 않는 경로(한글 폴더 등)를 열지 못한다. 모델은 100 KB 안팎이다.
+    data = bytes(model) if isinstance(model, (bytes, bytearray)) else Path(model).read_bytes()
+    it = Interpreter(model_content=data, **kw)
     if batch is not None:
         d = it.get_input_details()[0]
         it.resize_tensor_input(d["index"], [batch] + list(d["shape"][1:]), strict=False)

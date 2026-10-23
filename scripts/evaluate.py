@@ -15,7 +15,7 @@ import argparse
 import platform
 import time
 
-from _common import MODELS, REF_FP32, REF_INT8, load_features, save_json
+from _common import MODELS, REF_FP32, REF_INT8, load_features, save_json, environment
 
 import numpy as np
 
@@ -29,9 +29,10 @@ RUNTIMES = ("reference", "optimized", "xnnpack")
 
 def cpu_name():
     try:
-        for line in open("/proc/cpuinfo", encoding="utf-8"):
-            if line.startswith("model name"):
-                return line.split(":", 1)[1].strip()
+        with open("/proc/cpuinfo", encoding="utf-8") as fh:
+            for line in fh:
+                if line.startswith("model name"):
+                    return line.split(":", 1)[1].strip()
     except OSError:
         pass
     return platform.processor() or platform.machine()
@@ -66,7 +67,7 @@ def main():
     fp32_tfl = convert.to_float(km)
     (MODELS / "kws_tf221_float32.tflite").write_bytes(fp32_tfl)
 
-    res = {"cpu": cpu_name(), "n_test": int(len(y)), "models": {}}
+    res = {"cpu": cpu_name(), "environment": environment(), "n_test": int(len(y)), "models": {}}
     keras_pred = km.predict(x, batch_size=512, verbose=0)
     res["models"]["fp32_keras"] = {"accuracy": float((keras_pred.argmax(1) == y).mean()),
                                    "params_keras_total": int(km.count_params())}

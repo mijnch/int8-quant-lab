@@ -88,8 +88,14 @@ def main():
       "스크립트를 다시 실행하세요.\n")
     w("## 측정 환경\n")
     w(f"- CPU: {acc['cpu']} (클라우드 x86 VM, 스레드 1개)")
-    w(f"- Python {platform.python_version()}, TensorFlow {version('tensorflow')}, tf-keras {version('tf-keras')}, "
-      f"ai-edge-litert {version('ai-edge-litert')}, numpy {version('numpy')}")
+    env = acc.get("environment")
+    if env:   # 측정(evaluate.py) 때 기록한 환경 — 보고서를 다른 기계에서 다시 만들어도 바뀌지 않는다
+        w(f"- Python {env['python']}, TensorFlow {env['tensorflow']}, tf-keras {env['tf-keras']}, "
+          f"ai-edge-litert {env['ai-edge-litert']}, numpy {env['numpy']}")
+    else:     # 환경을 기록하기 전에 잰 결과 — 아래 값은 이 보고서를 만든 환경이라고 밝힌다
+        w(f"- (측정 때 라이브러리 판이 기록되지 않았다 — 아래는 이 보고서를 만든 환경) "
+          f"Python {platform.python_version()}, TensorFlow {version('tensorflow')}, tf-keras {version('tf-keras')}, "
+          f"ai-edge-litert {version('ai-edge-litert')}, numpy {version('numpy')}")
     w(f"- 데이터: tfds `speech_commands` 0.0.3 — 테스트 {dc['test']['n']:,}개, 검증 {dc['val']['n']:,}개, "
       f"보정 {dc['cal']['n']}개(MLPerf `quant_cal_idxs.txt`)\n")
 

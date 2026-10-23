@@ -1,0 +1,18 @@
+# 텍스트는 LF 로 통일한다 — Ubuntu·Windows CI 와 어느 PC 에서 clone 해도 같은 바이트를 본다.
+# clone 하는 PC 의 core.autocrlf 설정에 기대지 않는다.
+*.py text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.json text eol=lf
+*.yml text eol=lf
+*.ini text eol=lf
+*.cff text eol=lf
+.gitignore text eol=lf
+.gitattributes text eol=lf
+
+# 바이너리는 건드리지 않는다.
+*.png binary
+*.tflite binary
+*.npz binary
+*.npy binary
+*.safetensors binary
