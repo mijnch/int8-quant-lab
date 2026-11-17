@@ -1,0 +1,2119 @@
+{
+  "environment": {
+    "machine": "x86_64",
+    "python": "3.13.12",
+    "expf": "libm.so.6"
+  },
+  "mlperf_int8": {
+    "layer_isolated": {
+      "reference/random": {
+        "delegated": false,
+        "ops": [
+          {
+            "op": "0:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 4059,
+              "ruy": 0,
+              "float": 4059,
+              "fp32": 4063,
+              "neon8": 0
+            },
+            "policy": "double"
+          },
+          {
+            "op": "1:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 6848,
+              "ruy": 0,
+              "float": 6848,
+              "fp32": 6845,
+              "neon8": 0
+            },
+            "policy": "double"
+          },
+          {
+            "op": "2:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 3160,
+              "ruy": 0,
+              "float": 3160,
+              "fp32": 3161,
+              "neon8": 0
+            },
+            "policy": "double"
+          },
+          {
+            "op": "3:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 5356,
+              "ruy": 0,
+              "float": 5356,
+              "fp32": 5357,
+              "neon8": 0
+            },
+            "policy": "double"
+          },
+          {
+            "op": "4:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 3747,
+              "ruy": 0,
+              "float": 3747,
+              "fp32": 3749,
+              "neon8": 0
+            },
+            "policy": "double"
+          },
+          {
+            "op": "5:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 3823,
+              "ruy": 0,
+              "float": 3823,
+              "fp32": 3829,
+              "neon8": 0
+            },
+            "policy": "double"
+          },
+          {
+            "op": "6:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 2225,
+              "ruy": 0,
+              "float": 2225,
+              "fp32": 2227,
+              "neon8": 0
+            },
+            "policy": "double"
+          },
+          {
+            "op": "7:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 1797,
+              "ruy": 0,
+              "float": 1797,
+              "fp32": 1797,
+              "neon8": 0
+            },
+            "policy": "double"
+          },
+          {
+            "op": "8:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 3684,
+              "ruy": 0,
+              "float": 3684,
+              "fp32": 3683,
+              "neon8": 0
+            },
+            "policy": "double"
+          },
+          {
+            "op": "9:AVERAGE_POOL_2D",
+            "n": 19200,
+            "mismatch": {
+              "-": 0
+            },
+            "policy": "-"
+          },
+          {
+            "op": "10:RESHAPE",
+            "n": 19200,
+            "mismatch": {
+              "-": 0
+            },
+            "policy": "-"
+          },
+          {
+            "op": "11:FULLY_CONNECTED",
+            "n": 3600,
+            "mismatch": {
+              "double": 13,
+              "single": 0,
+              "ruy": 9,
+              "float": 0,
+              "fp32": 0,
+              "neon8": 9
+            },
+            "policy": "float"
+          },
+          {
+            "op": "12:SOFTMAX",
+            "n": 3600,
+            "mismatch": {
+              "reference": 0,
+              "optimized": 0
+            },
+            "policy": "reference"
+          }
+        ]
+      },
+      "reference/test": {
+        "delegated": false,
+        "ops": [
+          {
+            "op": "0:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 4440,
+              "ruy": 0,
+              "float": 4440,
+              "fp32": 4439,
+              "neon8": 0
+            },
+            "policy": "double"
+          },
+          {
+            "op": "1:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 11041,
+              "ruy": 0,
+              "float": 11041,
+              "fp32": 11041,
+              "neon8": 0
+            },
+            "policy": "double"
+          },
+          {
+            "op": "2:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 4934,
+              "ruy": 0,
+              "float": 4934,
+              "fp32": 4934,
+              "neon8": 0
+            },
+            "policy": "double"
+          },
+          {
+            "op": "3:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 6226,
+              "ruy": 0,
+              "float": 6226,
+              "fp32": 6226,
+              "neon8": 0
+            },
+            "policy": "double"
+          },
+          {
+            "op": "4:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 4677,
+              "ruy": 0,
+              "float": 4677,
+              "fp32": 4677,
+              "neon8": 0
+            },
+            "policy": "double"
+          },
+          {
+            "op": "5:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 3908,
+              "ruy": 0,
+              "float": 3908,
+              "fp32": 3911,
+              "neon8": 0
+            },
+            "policy": "double"
+          },
+          {
+            "op": "6:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 3993,
+              "ruy": 0,
+              "float": 3993,
+              "fp32": 3993,
+              "neon8": 0
+            },
+            "policy": "double"
+          },
+          {
+            "op": "7:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 3055,
+              "ruy": 0,
+              "float": 3055,
+              "fp32": 3055,
+              "neon8": 0
+            },
+            "policy": "double"
+          },
+          {
+            "op": "8:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 3812,
+              "ruy": 0,
+              "float": 3812,
+              "fp32": 3812,
+              "neon8": 0
+            },
+            "policy": "double"
+          },
+          {
+            "op": "9:AVERAGE_POOL_2D",
+            "n": 19200,
+            "mismatch": {
+              "-": 0
+            },
+            "policy": "-"
+          },
+          {
+            "op": "10:RESHAPE",
+            "n": 19200,
+            "mismatch": {
+              "-": 0
+            },
+            "policy": "-"
+          },
+          {
+            "op": "11:FULLY_CONNECTED",
+            "n": 3600,
+            "mismatch": {
+              "double": 12,
+              "single": 0,
+              "ruy": 16,
+              "float": 0,
+              "fp32": 0,
+              "neon8": 16
+            },
+            "policy": "float"
+          },
+          {
+            "op": "12:SOFTMAX",
+            "n": 3600,
+            "mismatch": {
+              "reference": 0,
+              "optimized": 0
+            },
+            "policy": "reference"
+          }
+        ]
+      },
+      "optimized/random": {
+        "delegated": false,
+        "ops": [
+          {
+            "op": "0:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 4059,
+              "ruy": 0,
+              "float": 4059,
+              "fp32": 4063,
+              "neon8": 0
+            },
+            "policy": "ruy"
+          },
+          {
+            "op": "1:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 6848,
+              "ruy": 0,
+              "float": 6848,
+              "fp32": 6845,
+              "neon8": 0
+            },
+            "policy": "neon8"
+          },
+          {
+            "op": "2:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 3160,
+              "ruy": 0,
+              "float": 3160,
+              "fp32": 3161,
+              "neon8": 0
+            },
+            "policy": "ruy"
+          },
+          {
+            "op": "3:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 5356,
+              "ruy": 0,
+              "float": 5356,
+              "fp32": 5357,
+              "neon8": 0
+            },
+            "policy": "neon8"
+          },
+          {
+            "op": "4:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 3747,
+              "ruy": 0,
+              "float": 3747,
+              "fp32": 3749,
+              "neon8": 0
+            },
+            "policy": "ruy"
+          },
+          {
+            "op": "5:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 3823,
+              "ruy": 0,
+              "float": 3823,
+              "fp32": 3829,
+              "neon8": 0
+            },
+            "policy": "neon8"
+          },
+          {
+            "op": "6:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 2225,
+              "ruy": 0,
+              "float": 2225,
+              "fp32": 2227,
+              "neon8": 0
+            },
+            "policy": "ruy"
+          },
+          {
+            "op": "7:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 1797,
+              "ruy": 0,
+              "float": 1797,
+              "fp32": 1797,
+              "neon8": 0
+            },
+            "policy": "neon8"
+          },
+          {
+            "op": "8:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 3684,
+              "ruy": 0,
+              "float": 3684,
+              "fp32": 3683,
+              "neon8": 0
+            },
+            "policy": "ruy"
+          },
+          {
+            "op": "9:AVERAGE_POOL_2D",
+            "n": 19200,
+            "mismatch": {
+              "-": 0
+            },
+            "policy": "-"
+          },
+          {
+            "op": "10:RESHAPE",
+            "n": 19200,
+            "mismatch": {
+              "-": 0
+            },
+            "policy": "-"
+          },
+          {
+            "op": "11:FULLY_CONNECTED",
+            "n": 3600,
+            "mismatch": {
+              "double": 22,
+              "single": 9,
+              "ruy": 0,
+              "float": 9,
+              "fp32": 9,
+              "neon8": 0
+            },
+            "policy": "ruy"
+          },
+          {
+            "op": "12:SOFTMAX",
+            "n": 3600,
+            "mismatch": {
+              "reference": 0,
+              "optimized": 0
+            },
+            "policy": "optimized"
+          }
+        ]
+      },
+      "optimized/test": {
+        "delegated": false,
+        "ops": [
+          {
+            "op": "0:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 4440,
+              "ruy": 0,
+              "float": 4440,
+              "fp32": 4439,
+              "neon8": 0
+            },
+            "policy": "ruy"
+          },
+          {
+            "op": "1:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 11041,
+              "ruy": 0,
+              "float": 11041,
+              "fp32": 11041,
+              "neon8": 0
+            },
+            "policy": "neon8"
+          },
+          {
+            "op": "2:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 4934,
+              "ruy": 0,
+              "float": 4934,
+              "fp32": 4934,
+              "neon8": 0
+            },
+            "policy": "ruy"
+          },
+          {
+            "op": "3:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 6226,
+              "ruy": 0,
+              "float": 6226,
+              "fp32": 6226,
+              "neon8": 0
+            },
+            "policy": "neon8"
+          },
+          {
+            "op": "4:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 4677,
+              "ruy": 0,
+              "float": 4677,
+              "fp32": 4677,
+              "neon8": 0
+            },
+            "policy": "ruy"
+          },
+          {
+            "op": "5:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 3908,
+              "ruy": 0,
+              "float": 3908,
+              "fp32": 3911,
+              "neon8": 0
+            },
+            "policy": "neon8"
+          },
+          {
+            "op": "6:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 3993,
+              "ruy": 0,
+              "float": 3993,
+              "fp32": 3993,
+              "neon8": 0
+            },
+            "policy": "ruy"
+          },
+          {
+            "op": "7:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 3055,
+              "ruy": 0,
+              "float": 3055,
+              "fp32": 3055,
+              "neon8": 0
+            },
+            "policy": "neon8"
+          },
+          {
+            "op": "8:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 3812,
+              "ruy": 0,
+              "float": 3812,
+              "fp32": 3812,
+              "neon8": 0
+            },
+            "policy": "ruy"
+          },
+          {
+            "op": "9:AVERAGE_POOL_2D",
+            "n": 19200,
+            "mismatch": {
+              "-": 0
+            },
+            "policy": "-"
+          },
+          {
+            "op": "10:RESHAPE",
+            "n": 19200,
+            "mismatch": {
+              "-": 0
+            },
+            "policy": "-"
+          },
+          {
+            "op": "11:FULLY_CONNECTED",
+            "n": 3600,
+            "mismatch": {
+              "double": 26,
+              "single": 16,
+              "ruy": 0,
+              "float": 16,
+              "fp32": 16,
+              "neon8": 4
+            },
+            "policy": "ruy"
+          },
+          {
+            "op": "12:SOFTMAX",
+            "n": 3600,
+            "mismatch": {
+              "reference": 0,
+              "optimized": 0
+            },
+            "policy": "optimized"
+          }
+        ]
+      },
+      "xnnpack/random": {
+        "delegated": true,
+        "ops": [
+          {
+            "op": "0:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 4063,
+              "single": 6,
+              "ruy": 4063,
+              "float": 6,
+              "fp32": 0,
+              "neon8": 4063
+            },
+            "policy": "fp32"
+          },
+          {
+            "op": "1:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 6850,
+              "single": 3,
+              "ruy": 6850,
+              "float": 3,
+              "fp32": 0,
+              "neon8": 6850
+            },
+            "policy": "fp32"
+          },
+          {
+            "op": "2:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 3124,
+              "single": 7,
+              "ruy": 3124,
+              "float": 7,
+              "fp32": 0,
+              "neon8": 3124
+            },
+            "policy": "fp32"
+          },
+          {
+            "op": "3:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 5414,
+              "single": 1,
+              "ruy": 5414,
+              "float": 1,
+              "fp32": 0,
+              "neon8": 5414
+            },
+            "policy": "fp32"
+          },
+          {
+            "op": "4:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 3700,
+              "single": 4,
+              "ruy": 3700,
+              "float": 4,
+              "fp32": 0,
+              "neon8": 3700
+            },
+            "policy": "fp32"
+          },
+          {
+            "op": "5:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 3831,
+              "single": 6,
+              "ruy": 3831,
+              "float": 6,
+              "fp32": 0,
+              "neon8": 3831
+            },
+            "policy": "fp32"
+          },
+          {
+            "op": "6:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 2336,
+              "single": 1,
+              "ruy": 2336,
+              "float": 1,
+              "fp32": 0,
+              "neon8": 2336
+            },
+            "policy": "fp32"
+          },
+          {
+            "op": "7:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 1775,
+              "single": 0,
+              "ruy": 1775,
+              "float": 0,
+              "fp32": 0,
+              "neon8": 1775
+            },
+            "policy": "fp32"
+          },
+          {
+            "op": "8:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 3631,
+              "single": 2,
+              "ruy": 3631,
+              "float": 2,
+              "fp32": 0,
+              "neon8": 3631
+            },
+            "policy": "fp32"
+          },
+          {
+            "op": "9:AVERAGE_POOL_2D",
+            "n": 19200,
+            "mismatch": {
+              "-": 0
+            },
+            "policy": "-"
+          },
+          {
+            "op": "10:RESHAPE",
+            "n": 19200,
+            "mismatch": {
+              "-": 0
+            },
+            "policy": "-"
+          },
+          {
+            "op": "11:FULLY_CONNECTED",
+            "n": 3600,
+            "mismatch": {
+              "double": 18,
+              "single": 0,
+              "ruy": 21,
+              "float": 0,
+              "fp32": 0,
+              "neon8": 21
+            },
+            "policy": "fp32"
+          },
+          {
+            "op": "12:SOFTMAX",
+            "n": 3600,
+            "mismatch": {
+              "reference": 0,
+              "optimized": 0
+            },
+            "policy": "optimized"
+          }
+        ]
+      },
+      "xnnpack/test": {
+        "delegated": true,
+        "ops": [
+          {
+            "op": "0:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 4439,
+              "single": 1,
+              "ruy": 4439,
+              "float": 1,
+              "fp32": 0,
+              "neon8": 4439
+            },
+            "policy": "fp32"
+          },
+          {
+            "op": "1:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 11015,
+              "single": 0,
+              "ruy": 11015,
+              "float": 0,
+              "fp32": 0,
+              "neon8": 11015
+            },
+            "policy": "fp32"
+          },
+          {
+            "op": "2:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 4891,
+              "single": 0,
+              "ruy": 4891,
+              "float": 0,
+              "fp32": 0,
+              "neon8": 4891
+            },
+            "policy": "fp32"
+          },
+          {
+            "op": "3:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 6244,
+              "single": 0,
+              "ruy": 6244,
+              "float": 0,
+              "fp32": 0,
+              "neon8": 6244
+            },
+            "policy": "fp32"
+          },
+          {
+            "op": "4:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 4682,
+              "single": 0,
+              "ruy": 4682,
+              "float": 0,
+              "fp32": 0,
+              "neon8": 4682
+            },
+            "policy": "fp32"
+          },
+          {
+            "op": "5:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 3943,
+              "single": 0,
+              "ruy": 3943,
+              "float": 0,
+              "fp32": 0,
+              "neon8": 3943
+            },
+            "policy": "fp32"
+          },
+          {
+            "op": "6:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 3928,
+              "single": 0,
+              "ruy": 3928,
+              "float": 0,
+              "fp32": 0,
+              "neon8": 3928
+            },
+            "policy": "fp32"
+          },
+          {
+            "op": "7:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 3066,
+              "single": 0,
+              "ruy": 3066,
+              "float": 0,
+              "fp32": 0,
+              "neon8": 3066
+            },
+            "policy": "fp32"
+          },
+          {
+            "op": "8:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 3675,
+              "single": 0,
+              "ruy": 3675,
+              "float": 0,
+              "fp32": 0,
+              "neon8": 3675
+            },
+            "policy": "fp32"
+          },
+          {
+            "op": "9:AVERAGE_POOL_2D",
+            "n": 19200,
+            "mismatch": {
+              "-": 0
+            },
+            "policy": "-"
+          },
+          {
+            "op": "10:RESHAPE",
+            "n": 19200,
+            "mismatch": {
+              "-": 0
+            },
+            "policy": "-"
+          },
+          {
+            "op": "11:FULLY_CONNECTED",
+            "n": 3600,
+            "mismatch": {
+              "double": 16,
+              "single": 0,
+              "ruy": 7,
+              "float": 0,
+              "fp32": 0,
+              "neon8": 8
+            },
+            "policy": "fp32"
+          },
+          {
+            "op": "12:SOFTMAX",
+            "n": 3600,
+            "mismatch": {
+              "reference": 0,
+              "optimized": 0
+            },
+            "policy": "optimized"
+          }
+        ]
+      }
+    },
+    "end_to_end_test_set": {
+      "reference": {
+        "outputs": 58680,
+        "mismatch": 0,
+        "max_abs_diff": 0
+      },
+      "optimized": {
+        "outputs": 58680,
+        "mismatch": 0,
+        "max_abs_diff": 0
+      },
+      "xnnpack": {
+        "outputs": 58680,
+        "mismatch": 0,
+        "max_abs_diff": 0
+      }
+    }
+  },
+  "tf221_int8": {
+    "layer_isolated": {
+      "reference/random": {
+        "delegated": false,
+        "ops": [
+          {
+            "op": "0:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 3612,
+              "ruy": 0,
+              "float": 3612,
+              "fp32": 3613,
+              "neon8": 0
+            },
+            "policy": "double"
+          },
+          {
+            "op": "1:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 6891,
+              "ruy": 0,
+              "float": 6891,
+              "fp32": 6892,
+              "neon8": 0
+            },
+            "policy": "double"
+          },
+          {
+            "op": "2:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 3401,
+              "ruy": 0,
+              "float": 3401,
+              "fp32": 3400,
+              "neon8": 0
+            },
+            "policy": "double"
+          },
+          {
+            "op": "3:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 6148,
+              "ruy": 0,
+              "float": 6148,
+              "fp32": 6148,
+              "neon8": 0
+            },
+            "policy": "double"
+          },
+          {
+            "op": "4:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 3145,
+              "ruy": 0,
+              "float": 3145,
+              "fp32": 3139,
+              "neon8": 0
+            },
+            "policy": "double"
+          },
+          {
+            "op": "5:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 4993,
+              "ruy": 0,
+              "float": 4993,
+              "fp32": 4993,
+              "neon8": 0
+            },
+            "policy": "double"
+          },
+          {
+            "op": "6:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 2713,
+              "ruy": 0,
+              "float": 2713,
+              "fp32": 2715,
+              "neon8": 0
+            },
+            "policy": "double"
+          },
+          {
+            "op": "7:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 2033,
+              "ruy": 0,
+              "float": 2033,
+              "fp32": 2033,
+              "neon8": 0
+            },
+            "policy": "double"
+          },
+          {
+            "op": "8:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 2505,
+              "ruy": 0,
+              "float": 2505,
+              "fp32": 2505,
+              "neon8": 0
+            },
+            "policy": "double"
+          },
+          {
+            "op": "9:AVERAGE_POOL_2D",
+            "n": 19200,
+            "mismatch": {
+              "-": 0
+            },
+            "policy": "-"
+          },
+          {
+            "op": "10:RESHAPE",
+            "n": 19200,
+            "mismatch": {
+              "-": 0
+            },
+            "policy": "-"
+          },
+          {
+            "op": "11:FULLY_CONNECTED",
+            "n": 3600,
+            "mismatch": {
+              "double": 6,
+              "single": 0,
+              "ruy": 10,
+              "float": 0,
+              "fp32": 0,
+              "neon8": 10
+            },
+            "policy": "float"
+          },
+          {
+            "op": "12:SOFTMAX",
+            "n": 3600,
+            "mismatch": {
+              "reference": 0,
+              "optimized": 0
+            },
+            "policy": "reference"
+          }
+        ]
+      },
+      "reference/test": {
+        "delegated": false,
+        "ops": [
+          {
+            "op": "0:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 3558,
+              "ruy": 0,
+              "float": 3558,
+              "fp32": 3558,
+              "neon8": 0
+            },
+            "policy": "double"
+          },
+          {
+            "op": "1:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 24867,
+              "ruy": 0,
+              "float": 24867,
+              "fp32": 24867,
+              "neon8": 0
+            },
+            "policy": "double"
+          },
+          {
+            "op": "2:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 4335,
+              "ruy": 0,
+              "float": 4335,
+              "fp32": 4335,
+              "neon8": 0
+            },
+            "policy": "double"
+          },
+          {
+            "op": "3:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 6477,
+              "ruy": 0,
+              "float": 6477,
+              "fp32": 6478,
+              "neon8": 0
+            },
+            "policy": "double"
+          },
+          {
+            "op": "4:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 3543,
+              "ruy": 0,
+              "float": 3543,
+              "fp32": 3543,
+              "neon8": 0
+            },
+            "policy": "double"
+          },
+          {
+            "op": "5:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 5984,
+              "ruy": 0,
+              "float": 5984,
+              "fp32": 5984,
+              "neon8": 0
+            },
+            "policy": "double"
+          },
+          {
+            "op": "6:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 4584,
+              "ruy": 0,
+              "float": 4584,
+              "fp32": 4584,
+              "neon8": 0
+            },
+            "policy": "double"
+          },
+          {
+            "op": "7:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 3893,
+              "ruy": 0,
+              "float": 3893,
+              "fp32": 3890,
+              "neon8": 0
+            },
+            "policy": "double"
+          },
+          {
+            "op": "8:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 3517,
+              "ruy": 0,
+              "float": 3517,
+              "fp32": 3517,
+              "neon8": 0
+            },
+            "policy": "double"
+          },
+          {
+            "op": "9:AVERAGE_POOL_2D",
+            "n": 19200,
+            "mismatch": {
+              "-": 0
+            },
+            "policy": "-"
+          },
+          {
+            "op": "10:RESHAPE",
+            "n": 19200,
+            "mismatch": {
+              "-": 0
+            },
+            "policy": "-"
+          },
+          {
+            "op": "11:FULLY_CONNECTED",
+            "n": 3600,
+            "mismatch": {
+              "double": 7,
+              "single": 0,
+              "ruy": 9,
+              "float": 0,
+              "fp32": 0,
+              "neon8": 8
+            },
+            "policy": "float"
+          },
+          {
+            "op": "12:SOFTMAX",
+            "n": 3600,
+            "mismatch": {
+              "reference": 0,
+              "optimized": 0
+            },
+            "policy": "reference"
+          }
+        ]
+      },
+      "optimized/random": {
+        "delegated": false,
+        "ops": [
+          {
+            "op": "0:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 3612,
+              "ruy": 0,
+              "float": 3612,
+              "fp32": 3613,
+              "neon8": 0
+            },
+            "policy": "ruy"
+          },
+          {
+            "op": "1:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 6891,
+              "ruy": 0,
+              "float": 6891,
+              "fp32": 6892,
+              "neon8": 0
+            },
+            "policy": "neon8"
+          },
+          {
+            "op": "2:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 3401,
+              "ruy": 0,
+              "float": 3401,
+              "fp32": 3400,
+              "neon8": 0
+            },
+            "policy": "ruy"
+          },
+          {
+            "op": "3:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 6148,
+              "ruy": 0,
+              "float": 6148,
+              "fp32": 6148,
+              "neon8": 0
+            },
+            "policy": "neon8"
+          },
+          {
+            "op": "4:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 3145,
+              "ruy": 0,
+              "float": 3145,
+              "fp32": 3139,
+              "neon8": 0
+            },
+            "policy": "ruy"
+          },
+          {
+            "op": "5:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 4993,
+              "ruy": 0,
+              "float": 4993,
+              "fp32": 4993,
+              "neon8": 0
+            },
+            "policy": "neon8"
+          },
+          {
+            "op": "6:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 2713,
+              "ruy": 0,
+              "float": 2713,
+              "fp32": 2715,
+              "neon8": 0
+            },
+            "policy": "ruy"
+          },
+          {
+            "op": "7:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 2033,
+              "ruy": 0,
+              "float": 2033,
+              "fp32": 2033,
+              "neon8": 0
+            },
+            "policy": "neon8"
+          },
+          {
+            "op": "8:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 2505,
+              "ruy": 0,
+              "float": 2505,
+              "fp32": 2505,
+              "neon8": 0
+            },
+            "policy": "ruy"
+          },
+          {
+            "op": "9:AVERAGE_POOL_2D",
+            "n": 19200,
+            "mismatch": {
+              "-": 0
+            },
+            "policy": "-"
+          },
+          {
+            "op": "10:RESHAPE",
+            "n": 19200,
+            "mismatch": {
+              "-": 0
+            },
+            "policy": "-"
+          },
+          {
+            "op": "11:FULLY_CONNECTED",
+            "n": 3600,
+            "mismatch": {
+              "double": 10,
+              "single": 10,
+              "ruy": 0,
+              "float": 10,
+              "fp32": 10,
+              "neon8": 2
+            },
+            "policy": "ruy"
+          },
+          {
+            "op": "12:SOFTMAX",
+            "n": 3600,
+            "mismatch": {
+              "reference": 0,
+              "optimized": 0
+            },
+            "policy": "optimized"
+          }
+        ]
+      },
+      "optimized/test": {
+        "delegated": false,
+        "ops": [
+          {
+            "op": "0:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 3558,
+              "ruy": 0,
+              "float": 3558,
+              "fp32": 3558,
+              "neon8": 0
+            },
+            "policy": "ruy"
+          },
+          {
+            "op": "1:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 24867,
+              "ruy": 0,
+              "float": 24867,
+              "fp32": 24867,
+              "neon8": 0
+            },
+            "policy": "neon8"
+          },
+          {
+            "op": "2:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 4335,
+              "ruy": 0,
+              "float": 4335,
+              "fp32": 4335,
+              "neon8": 0
+            },
+            "policy": "ruy"
+          },
+          {
+            "op": "3:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 6477,
+              "ruy": 0,
+              "float": 6477,
+              "fp32": 6478,
+              "neon8": 0
+            },
+            "policy": "neon8"
+          },
+          {
+            "op": "4:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 3543,
+              "ruy": 0,
+              "float": 3543,
+              "fp32": 3543,
+              "neon8": 0
+            },
+            "policy": "ruy"
+          },
+          {
+            "op": "5:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 5984,
+              "ruy": 0,
+              "float": 5984,
+              "fp32": 5984,
+              "neon8": 0
+            },
+            "policy": "neon8"
+          },
+          {
+            "op": "6:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 4584,
+              "ruy": 0,
+              "float": 4584,
+              "fp32": 4584,
+              "neon8": 0
+            },
+            "policy": "ruy"
+          },
+          {
+            "op": "7:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 3893,
+              "ruy": 0,
+              "float": 3893,
+              "fp32": 3890,
+              "neon8": 0
+            },
+            "policy": "neon8"
+          },
+          {
+            "op": "8:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 0,
+              "single": 3517,
+              "ruy": 0,
+              "float": 3517,
+              "fp32": 3517,
+              "neon8": 0
+            },
+            "policy": "ruy"
+          },
+          {
+            "op": "9:AVERAGE_POOL_2D",
+            "n": 19200,
+            "mismatch": {
+              "-": 0
+            },
+            "policy": "-"
+          },
+          {
+            "op": "10:RESHAPE",
+            "n": 19200,
+            "mismatch": {
+              "-": 0
+            },
+            "policy": "-"
+          },
+          {
+            "op": "11:FULLY_CONNECTED",
+            "n": 3600,
+            "mismatch": {
+              "double": 14,
+              "single": 9,
+              "ruy": 0,
+              "float": 9,
+              "fp32": 9,
+              "neon8": 5
+            },
+            "policy": "ruy"
+          },
+          {
+            "op": "12:SOFTMAX",
+            "n": 3600,
+            "mismatch": {
+              "reference": 0,
+              "optimized": 0
+            },
+            "policy": "optimized"
+          }
+        ]
+      },
+      "xnnpack/random": {
+        "delegated": true,
+        "ops": [
+          {
+            "op": "0:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 3613,
+              "single": 7,
+              "ruy": 3613,
+              "float": 7,
+              "fp32": 0,
+              "neon8": 3613
+            },
+            "policy": "fp32"
+          },
+          {
+            "op": "1:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 6911,
+              "single": 1,
+              "ruy": 6911,
+              "float": 1,
+              "fp32": 0,
+              "neon8": 6911
+            },
+            "policy": "fp32"
+          },
+          {
+            "op": "2:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 3371,
+              "single": 1,
+              "ruy": 3371,
+              "float": 1,
+              "fp32": 0,
+              "neon8": 3371
+            },
+            "policy": "fp32"
+          },
+          {
+            "op": "3:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 6199,
+              "single": 1,
+              "ruy": 6199,
+              "float": 1,
+              "fp32": 0,
+              "neon8": 6199
+            },
+            "policy": "fp32"
+          },
+          {
+            "op": "4:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 3224,
+              "single": 1,
+              "ruy": 3224,
+              "float": 1,
+              "fp32": 0,
+              "neon8": 3224
+            },
+            "policy": "fp32"
+          },
+          {
+            "op": "5:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 4961,
+              "single": 0,
+              "ruy": 4961,
+              "float": 0,
+              "fp32": 0,
+              "neon8": 4961
+            },
+            "policy": "fp32"
+          },
+          {
+            "op": "6:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 2577,
+              "single": 0,
+              "ruy": 2577,
+              "float": 0,
+              "fp32": 0,
+              "neon8": 2577
+            },
+            "policy": "fp32"
+          },
+          {
+            "op": "7:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 2111,
+              "single": 2,
+              "ruy": 2111,
+              "float": 2,
+              "fp32": 0,
+              "neon8": 2111
+            },
+            "policy": "fp32"
+          },
+          {
+            "op": "8:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 2413,
+              "single": 0,
+              "ruy": 2413,
+              "float": 0,
+              "fp32": 0,
+              "neon8": 2413
+            },
+            "policy": "fp32"
+          },
+          {
+            "op": "9:AVERAGE_POOL_2D",
+            "n": 19200,
+            "mismatch": {
+              "-": 0
+            },
+            "policy": "-"
+          },
+          {
+            "op": "10:RESHAPE",
+            "n": 19200,
+            "mismatch": {
+              "-": 0
+            },
+            "policy": "-"
+          },
+          {
+            "op": "11:FULLY_CONNECTED",
+            "n": 3600,
+            "mismatch": {
+              "double": 10,
+              "single": 0,
+              "ruy": 11,
+              "float": 0,
+              "fp32": 0,
+              "neon8": 9
+            },
+            "policy": "fp32"
+          },
+          {
+            "op": "12:SOFTMAX",
+            "n": 3600,
+            "mismatch": {
+              "reference": 0,
+              "optimized": 0
+            },
+            "policy": "optimized"
+          }
+        ]
+      },
+      "xnnpack/test": {
+        "delegated": true,
+        "ops": [
+          {
+            "op": "0:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 3558,
+              "single": 0,
+              "ruy": 3558,
+              "float": 0,
+              "fp32": 0,
+              "neon8": 3558
+            },
+            "policy": "fp32"
+          },
+          {
+            "op": "1:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 24878,
+              "single": 0,
+              "ruy": 24878,
+              "float": 0,
+              "fp32": 0,
+              "neon8": 24878
+            },
+            "policy": "fp32"
+          },
+          {
+            "op": "2:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 4401,
+              "single": 0,
+              "ruy": 4401,
+              "float": 0,
+              "fp32": 0,
+              "neon8": 4401
+            },
+            "policy": "fp32"
+          },
+          {
+            "op": "3:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 6421,
+              "single": 1,
+              "ruy": 6421,
+              "float": 1,
+              "fp32": 0,
+              "neon8": 6421
+            },
+            "policy": "fp32"
+          },
+          {
+            "op": "4:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 3571,
+              "single": 0,
+              "ruy": 3571,
+              "float": 0,
+              "fp32": 0,
+              "neon8": 3571
+            },
+            "policy": "fp32"
+          },
+          {
+            "op": "5:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 5961,
+              "single": 0,
+              "ruy": 5961,
+              "float": 0,
+              "fp32": 0,
+              "neon8": 5961
+            },
+            "policy": "fp32"
+          },
+          {
+            "op": "6:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 4524,
+              "single": 0,
+              "ruy": 4524,
+              "float": 0,
+              "fp32": 0,
+              "neon8": 4524
+            },
+            "policy": "fp32"
+          },
+          {
+            "op": "7:DEPTHWISE_CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 3848,
+              "single": 2,
+              "ruy": 3848,
+              "float": 2,
+              "fp32": 0,
+              "neon8": 3848
+            },
+            "policy": "fp32"
+          },
+          {
+            "op": "8:CONV_2D",
+            "n": 2400000,
+            "mismatch": {
+              "double": 3497,
+              "single": 1,
+              "ruy": 3497,
+              "float": 1,
+              "fp32": 0,
+              "neon8": 3497
+            },
+            "policy": "fp32"
+          },
+          {
+            "op": "9:AVERAGE_POOL_2D",
+            "n": 19200,
+            "mismatch": {
+              "-": 0
+            },
+            "policy": "-"
+          },
+          {
+            "op": "10:RESHAPE",
+            "n": 19200,
+            "mismatch": {
+              "-": 0
+            },
+            "policy": "-"
+          },
+          {
+            "op": "11:FULLY_CONNECTED",
+            "n": 3600,
+            "mismatch": {
+              "double": 3,
+              "single": 0,
+              "ruy": 6,
+              "float": 0,
+              "fp32": 0,
+              "neon8": 7
+            },
+            "policy": "fp32"
+          },
+          {
+            "op": "12:SOFTMAX",
+            "n": 3600,
+            "mismatch": {
+              "reference": 0,
+              "optimized": 0
+            },
+            "policy": "optimized"
+          }
+        ]
+      }
+    },
+    "end_to_end_test_set": {
+      "reference": {
+        "outputs": 58680,
+        "mismatch": 0,
+        "max_abs_diff": 0
+      },
+      "optimized": {
+        "outputs": 58680,
+        "mismatch": 0,
+        "max_abs_diff": 0
+      },
+      "xnnpack": {
+        "outputs": 58680,
+        "mismatch": 0,
+        "max_abs_diff": 0
+      }
+    }
+  },
+  "fuzz": {
+    "CONV_2D": {
+      "models": 100,
+      "xnnpack_delegated": 100,
+      "all_outputs_equal": {
+        "reference": {
+          "double": 100,
+          "single": 16,
+          "ruy": 71,
+          "float": 16,
+          "fp32": 16,
+          "neon8": 85
+        },
+        "optimized": {
+          "double": 71,
+          "single": 17,
+          "ruy": 100,
+          "float": 17,
+          "fp32": 17,
+          "neon8": 73
+        },
+        "xnnpack": {
+          "double": 16,
+          "single": 99,
+          "ruy": 17,
+          "float": 99,
+          "fp32": 100,
+          "neon8": 16
+        }
+      },
+      "policy": {
+        "reference": "double",
+        "optimized": "ruy",
+        "xnnpack": "fp32"
+      }
+    },
+    "DEPTHWISE_CONV_2D": {
+      "models": 100,
+      "xnnpack_delegated": 100,
+      "all_outputs_equal": {
+        "reference": {
+          "double": 100,
+          "single": 12,
+          "ruy": 67,
+          "float": 12,
+          "fp32": 12,
+          "neon8": 75
+        },
+        "optimized": {
+          "double": 75,
+          "single": 11,
+          "ruy": 73,
+          "float": 11,
+          "fp32": 11,
+          "neon8": 100
+        },
+        "xnnpack": {
+          "double": 12,
+          "single": 98,
+          "ruy": 11,
+          "float": 98,
+          "fp32": 100,
+          "neon8": 11
+        }
+      },
+      "policy": {
+        "reference": "double",
+        "optimized": "neon8",
+        "xnnpack": "fp32"
+      }
+    },
+    "FULLY_CONNECTED": {
+      "models": 100,
+      "xnnpack_delegated": 100,
+      "all_outputs_equal": {
+        "reference": {
+          "double": 80,
+          "single": 100,
+          "ruy": 82,
+          "float": 100,
+          "fp32": 100,
+          "neon8": 81
+        },
+        "optimized": {
+          "double": 88,
+          "single": 82,
+          "ruy": 100,
+          "float": 82,
+          "fp32": 82,
+          "neon8": 95
+        },
+        "xnnpack": {
+          "double": 80,
+          "single": 100,
+          "ruy": 82,
+          "float": 100,
+          "fp32": 100,
+          "neon8": 81
+        }
+      },
+      "policy": {
+        "reference": "float",
+        "optimized": "ruy",
+        "xnnpack": "fp32"
+      }
+    },
+    "AVERAGE_POOL_2D": {
+      "models": 100,
+      "xnnpack_delegated": 0,
+      "all_outputs_equal": {
+        "reference": {
+          "-": 100
+        },
+        "optimized": {
+          "-": 100
+        },
+        "xnnpack": {
+          "-": 100
+        }
+      },
+      "policy": {
+        "reference": "-",
+        "optimized": "-",
+        "xnnpack": "-"
+      }
+    },
+    "SOFTMAX": {
+      "models": 100,
+      "xnnpack_delegated": 0,
+      "all_outputs_equal": {
+        "reference": {
+          "reference": 100,
+          "optimized": 100
+        },
+        "optimized": {
+          "reference": 100,
+          "optimized": 100
+        },
+        "xnnpack": {
+          "reference": 100,
+          "optimized": 100
+        }
+      },
+      "policy": {
+        "reference": "reference",
+        "optimized": "optimized",
+        "xnnpack": "optimized"
+      }
+    }
+  }
+}
